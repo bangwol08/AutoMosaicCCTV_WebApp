@@ -1,0 +1,120 @@
+.mainclass{
+    position: relative;
+    top: 20%;
+}
+.video {
+    position: relative;
+    max-width: 80%;
+    width: 70.7%;
+    height: 500px;
+    margin:1em auto;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit:cover;
+}
+.loading {
+    position: relative;
+    max-width: 80%;
+    height: 50%;
+    width: 50%;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+  .back {
+    margin:1em auto;
+    font-family:"Roboto";
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    padding: 20%;
+  }
+  .back span {
+    color:#F2C640;
+    background:#262B37;
+    display:table-cell;
+    box-shadow:inset 0 0 5px rgba(0,0,0,0.3), 0 5px 0 #ccc;
+    padding: 15px;
+    animation:jumb 2s infinite;
+    font-size: 2.5em;
+  }
+  @keyframes jumb {
+    0% {
+      transform:translateY(0px)
+    }
+    50% {
+      transform:translateY(-30px);
+      box-shadow:0 15px 0 rgb(242, 198, 64);
+    }
+    100% {
+      transform:translateY(0px)
+    }
+  }
+  .back span:nth-child(1) {
+    animation-delay:0s;
+  }
+  .back span:nth-child(2) {
+    animation-delay:.1s;
+  }
+  .back span:nth-child(3) {
+    animation-delay:.2s;
+  }
+  .back span:nth-child(4) {
+    animation-delay:.3s;
+  }
+  .back span:nth-child(5) {
+    animation-delay:.4s;
+  }
+  .back span:nth-child(6) {
+    animation-delay:.5s;
+  }
+  .back span:nth-child(7) {
+    animation-delay:.6s;
+  }
+
+@media (max-width: 768px) {
+    .video {
+    position: relative;
+    max-width: 90%;
+    height: 100%;
+    width: 100%;
+    }
+    .loading {
+        position: static;
+        max-width: 80%;
+        height : 250px;
+        max-height : 50%;
+        width:100%;
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+      body {
+         display:flex;
+         align-items:center;
+
+      }
+      .back {
+        margin:1em auto;
+        font-family:"Roboto";
+        height: 230px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gray;
+        padding: 20%
+      }
+      .back span {
+        color:#F2C640;
+        background:#262B37;
+        display:table-cell;
+        box-shadow:inset 0 0 5px rgba(0,0,0,0.3), 0 5px 0 #ccc;
+        padding: 0 15px;
+        animation:jumb 2s infinite;
+        font-size: 1em;
+      }
+}

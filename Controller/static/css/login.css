@@ -1,0 +1,21 @@
+#myform {
+        width: 900px;
+        height: 400px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px;
+}
+
+@media (max-width: 1024px) {
+    #myform {
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    #myform {
+        width: 300px;
+    }
+
+}
+

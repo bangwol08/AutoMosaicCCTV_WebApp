@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="utf-8">
+<head>
+    <!-- meta data -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>CCTV 동작 감시 모자이크</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel ="stylesheet" href ="{{ url_for('static', filename='css/styles.css') }}"/>
+    <link rel ="stylesheet" href ="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+
+    <!-- jquery_inlcude -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- 사용자CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slide.css') }}">
+</head>
+<body>
+    <!-- 네비게이션바-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">{% include 'nav.html' %}</nav>
+
+    <!-- 메인컨텐츠 -->
+    <main>
+        <div class="slide slide_wrap">
+            <div class="slide_item item1">
+                <div class="container px-4 px-lg-5 h-100">
+                    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                        <div class="col-lg-8 align-self-end">
+                            <h2 class="text-white font-weight-bold">CCTV 모자이크 영상</h2>
+                            <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 align-self-baseline">
+                            <p class="text-white-75 mb-5">
+                                실시간으로 CCTV 영상 내에서 개인의 얼굴을 탐지하고 자동으로 모자이크를 하여 영상 내 3자의 비식별화를 통해 개인정보 보호법 문제를 해결하고
+                                누구든 언제나 CCTV를 열람할 수 있도록 서비스를 제공합니다.
+                            </p>
+                            <!- 버튼예제 -->
+                            <!-- <button type="button" class="btn btn-primary btn-xl" onClick="location.href='/html/CCTV_page.html'">CCTV</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide_item item2">
+                <div class="container px-4 px-lg-5 h-100">
+                    <div
+                        class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                        <div class="col-lg-8 align-self-end">
+                            <h1 class="text-white font-weight-bold">편리한 CCTV영상 열람</h1>
+                            <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 align-self-baseline">
+                            <p class="text-white-75 mb-5">
+                                카메라 주변 QR코드를 스캔해 쉽고 간단하게 CCTV영상 열람 신청을 할 수 있습니다.
+                            </p>
+                            <button type="button" class="btn btn-primary btn-xl" onClick="location.href='/QRreader'">QR코드 스캔</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide_item item3">
+                <div class="container px-4 px-lg-5 h-100">
+                    <div
+                        class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                        <div class="col-lg-8 align-self-end">
+                            <h1 class="text-white font-weight-bold">CCTV Mosaic 어플 다운로드</h1>
+                            <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 align-self-baseline">
+                            <p class="text-white-75 mb-5">
+                                안드로이드 어플을 다운로드하여 편하게 사용하세요!
+                            </p>
+                            <!- 버튼예제 -->
+                            <button type="button" class="btn btn-primary btn-xl" onClick="location.href='https://drive.google.com/u/0/uc?id=1xV4PY0bDMktWatNAdRQNwdqTKUCtA1yZ&export=download&confirm=t&uuid=1c70f5ee-1c30-4750-9f31-c7b1d2397357&at=AKKF8vz0WWaQz6qJ5X5r26U2etkN:1686674502780'">어플 다운로드</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{#            <div class="slide_item item4">#}
+{#                <div class="container px-4 px-lg-5 h-100">#}
+{#                    <div#}
+{#                        class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">#}
+{#                        <div class="col-lg-8 align-self-end">#}
+{#                            <h1 class="text-white font-weight-bold">4페이지입니다</h1>#}
+{#                            <hr class="divider" />#}
+{#                        </div>#}
+{#                        <div class="col-lg-8 align-self-baseline">#}
+{#                            <p class="text-white-75 mb-5">#}
+{#                                4페이지입니다#}
+{#                            </p>#}
+{#                            <!- 버튼예제 -->#}
+{#                            <!-- <button type="button" class="btn btn-primary btn-xl" onClick="location.href='/html/CCTV_page.html'">CCTV</button> -->#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="slide_item item5">#}
+{#                <div class="container px-4 px-lg-5 h-100">#}
+{#                    <div#}
+{#                        class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">#}
+{#                        <div class="col-lg-8 align-self-end">#}
+{#                            <h1 class="text-white font-weight-bold">5페이지입니다</h1>#}
+{#                            <hr class="divider" />#}
+{#                        </div>#}
+{#                        <div class="col-lg-8 align-self-baseline">#}
+{#                            <p class="text-white-75 mb-5">#}
+{#                                5페이지입니다#}
+{#                            </p>#}
+{#                            <!- 버튼예제 -->#}
+{#                            <!-- <button type="button" class="btn btn-primary btn-xl" onClick="location.href='/html/CCTV_page.html'">CCTV</button> -->#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="slide_prev_button slide_button">◀</div>
+            <div class="slide_next_button slide_button">▶</div>
+            <ul class="slide_pagination"></ul>
+        </div>
+        <script src="{{ url_for('static', filename='js/slide.js') }}"></script>
+    </main>
+
+</body>
+</html>

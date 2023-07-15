@@ -1,0 +1,38 @@
+body{
+    height: 40%;
+    width: 80%;
+}
+#myform {
+        width: 700px;
+        top:45%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px;
+        position: relative;
+        left:40%
+}
+
+@media (max-width: 1024px) {
+    #myform {
+        top:55%;
+        position: relative;
+    }
+    body{
+        width: 40%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    #myform {
+        width: 90%;
+        max-width: 700px;
+        top:60%;
+        position: relative;
+        left: 5%;
+    }
+    body{
+        width: 100%;
+    }
+
+}
+

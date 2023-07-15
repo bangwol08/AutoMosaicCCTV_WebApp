@@ -1,0 +1,244 @@
+@viewport { width: device-width; }
+
+*:focus {
+    outline: none;
+}
+body #project-wrapper {
+  /*height: 100vh;*/
+  height: 1vh;
+  width: 7vw;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+body #project-wrapper #project-container {
+    height: 50px;
+    /* min-width: 550px; */
+    font-size: 14px;
+    width: 12vw;
+    position: relative;
+    z-index: 2;
+    /*background: rgba(0, 0, 0, 0.15);*/
+    background-color: transparent;
+    border-radius: 6px;
+    text-align: center;
+    top: 7px;
+}
+body #project-wrapper #project-container nav {
+  line-height: 50px;
+  /*font-size: 1em;*/
+  font-size: 0.9em;
+  color: white;
+  text-align: center;
+  position: relative;
+  width: 12vw;
+}
+body #project-wrapper #project-container nav p {
+  display: inline-block;
+  padding: 0 0vw;
+  cursor: pointer;
+}
+body #project-wrapper #project-container nav p:hover {
+  opacity: .8;
+}
+body #project-wrapper #project-container nav p i {
+  margin-left: 2px;
+  font-size: .9em;
+}
+body #project-wrapper #project-container nav .dropdown {
+  display: hidden;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: -20px;
+  position: relative;
+  background: transparent;
+  /*width: 100px;*/
+  width: 15.5vw;
+  height: 0vh;
+  z-index: 4;
+  border-radius: 4px;
+  /*left: calc(50% - 235px);*/
+  left: calc(50% - 50px);
+  -webkit-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.2);
+}
+body #project-wrapper #project-container nav .dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: calc(50% - 5px);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  z-index: 3;
+}
+body #project-wrapper #project-container nav .dropdown.show {
+  width: 10vw;
+  left: 0vw;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  margin-top: 0;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+body #project-wrapper #project-container nav .dropdown p {
+  color: gray;
+  display: block;
+  text-align: left;
+  padding: 0 18px;
+  margin: -4px 0;
+}
+body #project-wrapper #project-container nav .dropdown p:hover {
+  opacity: .8;
+}
+body #project-wrapper #project-container nav .dropdown p:nth-child(1) {
+  padding-top: 4px;
+}
+body #project-wrapper #project-container nav .dropdown p:nth-child(5) {
+  padding-bottom: 4px;
+}
+
+#nav-my {
+  margin: -3vh 0vw 0vh 0vw;
+}
+
+.no-dot {
+  list-style: none;
+  padding-left: 0;
+}
+@media (min-width: 992px) {
+  #nav-my-item {
+    list-style-type: none;
+    padding: 0; /* top left bottom right */
+
+    /* 1-2.margin을 수정 해야한다. */
+    /*margin: 12vh 0vw 0vh 0vw;*/
+  }
+}
+
+
+/*가로 너비가 500px 이하일 때 아래 스타일 적용*/
+@media (max-width:991px) {
+  .nav-my-item-show {
+    margin: 14vh 0vw 0vh 0vw;
+    /*padding: 0;*/
+    /*list-style-type: none;*/
+  }
+
+  body #project-wrapper #project-container {
+    height: 35px;
+    /* min-width: 550px; */
+    font-size: 14px;
+    width: 12vw;
+    position: relative;
+    z-index: 2;
+    /* background: rgba(0, 0, 0, 0.15); */
+    background-color: transparent;
+    border-radius: 6px;
+    text-align: center;
+    top: 7px;
+  }
+
+  /* 영상처리 탭 (위치)*/
+  body #project-wrapper #project-container nav {
+    line-height: 50px;
+    /* font-size: 1em; */
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+    position: relative;
+    width: 12vw;
+    right: -2.9vw;
+  }
+
+  body #project-wrapper #project-container nav p {
+    display: inline-block;
+    padding: 0 0vw;
+    cursor: pointer;
+    width: 19vw;
+    right: 5.5vw;
+    color: black;
+    bottom: 1vh;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+  #mainNav .navbar-nav .nav-item .nav-link {
+    color: #6c757d;
+    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    /* width: 17vw; */
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    position: relative;
+    bottom: 3vh;
+    display: block;
+  }
+
+  /* 영상처리 토글 안의 박스 관련(크기) */
+  body #project-wrapper #project-container nav .dropdown.show {
+    height: 130px;
+    width: 16vw;
+    margin: 0vh 0vw 0vh 2vw;
+    padding: 0vh 0vw 0vh 0vw;
+    position: relative;
+    bottom: 3vh;
+    left: 5.5vw;
+  }
+
+  #mainNav {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    transition: background-color 0.2s ease;
+    /*height: 45vh; */  /* 영상처리 토글을 열면 45vh가 되도록... */
+  }
+
+
+  /* 1. 영상처리 토글이 켜지면 이렇게  영상처리 토글 - 로그인 사이의 거리 띄우도록 */
+  #nav-my-item {
+    list-style-type: none;
+    padding: 0; /* top left bottom right */
+    /* 1-2.margin을 수정 해야한다. */
+    margin: 23vh 0vw 0vh 0vw;
+
+
+  }
+
+  /* ul태그 점 없애기 + 위치 조정*/
+  .no-dot {
+    list-style: none;
+    padding-left: 1vw;
+    position: relative;
+    bottom: 0vh;
+    right: 4.5vw;
+  }
+
+  /* li태그 조정 */
+  #nav-my {
+    margin: -1vh 0vw 0vh 0vw;
+    padding: 0vh 0vw 0vh 2vw;
+    height: 5.5vh;
+    position: relative;
+    bottom: 0.5vh;
+  }
+
+}
+/*  모바일 토글 해상도 맞춤  */
+@media (max-width:481px) {
+
+}
+
+
+
+/*rgba(255, 255, 255, 0.7;*/
