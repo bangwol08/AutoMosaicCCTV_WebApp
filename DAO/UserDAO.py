@@ -19,6 +19,5 @@ def SelectUser(id,pw):
         return row
 
     except Exception as e:
-        print(e)
-        return None
+        raise e
 

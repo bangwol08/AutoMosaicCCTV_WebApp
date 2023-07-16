@@ -14,9 +14,7 @@ loginController = Blueprint("loginPage", __name__, url_prefix="/")
 def loginPage():
     if request.method == 'POST':
         try:
-            id, pw = User.login(request.form['user'], request.form['pwd'])
-            session['id'] = id
-            session['name'] = pw
+            User.login(request.form['user'], request.form['pwd'])
             #이전페이지 감지 후 페이지로 이동
             if request.form['prev'] != 'None' and request.form['cameraID'] != 'None':
                 return redirect(url_for(request.form['prev'], cameraID=request.form['cameraID']))
