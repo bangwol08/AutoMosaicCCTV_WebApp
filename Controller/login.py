@@ -30,3 +30,14 @@ def login():
             return render_template('login.html', prev=request.form['prev'], cameraID=request.form['cameraID'])
     else:
         return render_template('login.html', prev=request.args.get('prev'), cameraID=request.args.get('cameraID'))
+
+# 로그아웃 페이지
+@loginPage.route('/login')
+def logout():
+    # 세션관리(세션이 없을때(로그인이 되어있지 않을때) index로 돌아감)
+    if 'id' not in session:
+        return redirect('/')
+
+    # 실제 페이지구현
+    session.clear()
+    return redirect('/')
