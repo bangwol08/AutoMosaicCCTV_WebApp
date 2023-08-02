@@ -1,21 +1,44 @@
-/* 시간 선택기 */
-#ui-datepicker-div {
-    position: absolute;
-    top: 244.305px;
-    left: 815.359px;
-    z-index: 1;
-    background-color: white;
-    /*width: 39%;*/
-    font-size: 11px;
+body{
+    height: 40%;
+    width: 80%;
+}
+#myform {
+        width: 700px;
+        top:45%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px;
+        position: relative;
+        left:40%
 }
 
-/* 날짜 선택기 */
-input[type="radio"]:checked {
-  border-color: green;
-  background-color: lightgreen;
+@media (max-width: 1024px) {
+    #myform {
+        top:55%;
+        position: relative;
+    }
+    body{
+        width: 40%;
+    }
+
+
 }
 
+@media (max-width: 768px) {
+    #myform {
+        width: 90%;
+        max-width: 700px;
+        top:60%;
+        position: relative;
+        left: 5%;
+    }
+    body{
+        width: 100%;
+    }
+    .flatpickr-wrapper {
+        position: relative;
+    }
 
+}
 
 /* 법적고지 글자색 */
 #openModal {
@@ -27,136 +50,7 @@ strong {
     color: black;
 }
 
-/* 배경 및 form 틀 */
-.input-form {
-    width: 900px;
-    height: 550px;
-
-    margin-top: 80px;
-    padding: 32px;
-
-    /*background-color: rgba(255, 255, 255, 0.5);*/
-    background-color: #f8f9fa!important;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-    box-shadow: 5px 5px 5px 5px;
-}
-body {
-         margin: 0px;
-    }
-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@media(max-width: 1024px){
-    .position-absolute top-50 start-50 translate-middle text-center{
-        width: 500px;
-    }
-    .input-form {
-        width: 500px;
-        /*height: 500px;*/
-    }
-
-    #wantTime_e {
-        width: 183px;
-        height: 28px;
-        background-color: white;
-        color: initial;
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-        padding: initial;
-        border: initial;
-        position: relative;
-        /*left: 5.5vw;*/
-        top: 0;
-        display: inline-block;
-    }
-
-    body {
-         margin: 0px;
-    }
-
-}
-
-@media(max-width: 768px){
-    .position-absolute top-50 start-50 translate-middle text-center{
-        width: 300px;
-    }
-    .input-form {
-        width: 300px;
-        height: 600px;
-    }
-
-    main{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    body {
-         margin: 0px;
-    }
-
-
-}
-
-
-
-/* form 기본 */
-input.form-control {
-    width: 183px;
-    /*width: 231px;*/
-    height: 28px;
-    background-color: white;
-    color: initial;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    padding: initial;
-    border: initial;
-    position: relative;
-    left: 0;
-    top: 0;
-    display: inline-block;
-}
-input.form-control2 {
-    width: 115px;
-    /* 231px로?*/
-    height: 28px;
-    background-color: white;
-    color: initial;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    padding: initial;
-    border: initial;
-    position: relative;
-    left: 0;
-    top: 0;
-    display: inline-block;
-}
-
-.form-check-input {
-    width: 1em;
-    height: 1em;
-    margin-top: 0.25em;
-    vertical-align: top;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-    position: relative;
-    margin-left: 0;
+/* Reset the position of the flatpicker's time picker window */
+.flatpickr-time {
+    top: auto !important;
 }

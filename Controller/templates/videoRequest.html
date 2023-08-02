@@ -22,23 +22,33 @@
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 
-    <!-- jQuery Timepicker JS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" integrity="sha512-LT9fy1J8pE4Cy6ijbg96UkExgOjCqcxAC7xsnv+mLJxSvftGVmmc236jlPTZXPcBRQcVOWoK1IJhb1dAjtb4lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- flatpicker (Timepicker) JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel ="stylesheet" href ="{{ url_for('static', filename='css/styles.css') }}"/>
     <link rel ="stylesheet" href ="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
 
 
+
     <!-- jquery_inlcude -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- 사용자CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/tab.css') }}">
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/law.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/request2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/request.css') }}">
+
+    <style>
+
+        .time-container {
+            position: relative;
+            display: inline-block;
+        }
+
+    </style>
+
 </head>
 <body>
     <!-- 네비게이션바-->
@@ -77,81 +87,69 @@
                 </div>
             </div>
         </div>
-        <!-- 컨텐츠 표시 -->
+            <!-- 컨텐츠 표시 -->
             <div id="myform" class="text-center bg-light text-dark bg-opacity-100 d-inline-block" >
-                <div class="input-form-backgroud row ">
-                    <div class="input-form col-md-12 mx-auto">
-                          <h4 class="mb-3">영상 신청</h4>
-                          <hr class="mb-4">
-                          <!-- 영상 신청 -->
-                          <div class="active">
-                              <form id="form" name="form" class="request needs-validation" action="/videoRequest" method="POST" target="_blank" novalidate>
-{#                                  <div class="row">#}
-                                  <div class="mb-3">
-                                      <p>
-                                          <label for="cameraName"><strong>카메라ID 또는 위치</strong></label>
-                                          <input id="cameraName" type="text" class="form-control is-valid" value={{ cameraName }} name="cameraName" required>
-                                          <div class="invalid-feedback">
-                                              카메라ID나 위치가 올바르지 않습니다
-                                          </div>
-                                      </p>
-                                  </div>
-{#                                  </div>#}
-{#                                  col-md-6#}
-                                  <div class="mb-3">
-                                      <p>
-                                          <label for="startDay"><strong>원하는 날짜</strong></label>
-                                          <input id="startDay" class="form-control is-valid" type="date" name="startDay" required>
-                                          <div class="invalid-feedback">
-                                            날짜를 입력해주세요
-                                          </div>
-                                  </div>
-                                  <div class="row">
-                                      <div class="mb-3">
-                                          <p>
-                                              <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
-                                              <input id="wantTime_s" type="text" class="form-control timepicker form-time " name="wantTime_s" placeholder="시작시간 입력" required><br>
-                                              <input id="wantTime_e" type="text" class="form-control timepicker form-time " name="wantTime_e" placeholder="종료시간 입력" required>
-                                              <div id="passwordHelpBlock" class="form-text">
-                                                    ex) 영상의 1시간 지점부터 2시간 지점까지
-                                              </div>
-                                          </p>
-                                      </div>
-                                  </div>
-                                  <div class="mb-3">
-                                      <p>
-                                          <label for="terms" class="form-check-label form-check-inline "><strong>열람 사유 &nbsp; &nbsp;</strong></label>
-                                          <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무
-                                      </p>
-                                  </div>
-                                  <div class="mb-3">
-                                      <p>
-                                          <label for="terms" class="form-check-label"><a data-toggle="modal"  id="myLink"><strong>법적 고지 및 약관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></label>
-{#                                          href="#myModal"#}
-                                          <input id="terms" class="form-check-input" type="radio" name="terms" value="O" required>&nbsp;동의함<br>
-                                      </p>
-                                  </div>
-                                  <hr class="mb-4">
-                                  <p>
-                                      <input type="submit" value="제출">
-                                  </p>
-                              </form>
-                          </div>
-                      </div>
+            <div class="m-3 p-3">
+                <h4 class="mb-3">영상 신청</h4><hr>
+                <form id="form" name="form" class="request needs-validation" action="/videoRequest" method="POST" target="_blank" novalidate>
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cameraName"><strong>카메라ID 또는 위치</strong></label>
+                                <input id="cameraName" type="text" class="form-control is-valid" value="{{ user_ID }} - 요청 영상 1" name="cameraName" readonly required>
+                                <div class="invalid-feedback">
+                                    카메라ID나 위치가 올바르지 않습니다
+                                </div>
+                                <input type="hidden" id="prev" name="prev" value={{ prev }}>
+                                <input type="hidden" id="cameraID" name="cameraID" value={{ cameraID }}>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="startDay"><strong>원하는 날짜</strong></label>
+                                <input id="startDay" class="form-control is-valid" type="date" name="startDay" max="today" min="today" required>
+                                <div class="invalid-feedback">
+                                    날짜를 입력해주세요
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="terms" class="form-check-label form-check-inline "><strong>열람 사유 &nbsp; &nbsp;</strong></label>
+                                <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무
+{#                                <textarea cols="38" rows="3" placeholder="간단히 적어주세요."></textarea>#}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
+                                <div class="time-container-1">
+                                    <input type="text" id="wantTime_s" class="form-control" placeholder="시작시간 입력" required>
+                                </div>
+                                <div class="time-container-2">
+                                    <input type="text" id="wantTime_e" class="form-control" placeholder="종료시간 입력" required>
+                                </div>
+                                <div id="passwordHelpBlock" class="form-text">
+                                    ex) 영상의 1시간 지점부터 2시간 지점까지
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="terms" class="form-check-label"><a data-toggle="modal"  id="myLink"><strong>법적 고지 및 약관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></label>
+                            <input id="terms" class="form-check-input" type="radio" name="terms" value="O" required>&nbsp;동의함<br>
+                        </div>
+                        <hr>
+                        <div class="mb-4">
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" name = "button">제출</button>
+                    </div>
+                    </form>
                 </div>
             </div>
-    <div class="h-50">
 
-    </div>
     <!-- 사용자 JS -->
     <script src="{{ url_for('static', filename='js/law.js') }}"></script>
     <script src="{{ url_for('static', filename='js/request.js') }}"></script>
 
-    <!-- jQuery Timepicker JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js" integrity="sha512-s5u/JBtkPg+Ff2WEr49/cJsod95UgLHbC00N/GglqdQuLnYhALncz8ZHiW/LxDRGduijLKzeYb7Aal9h3codZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-addon-i18n.min.js" integrity="sha512-t2ZIJH81Sh+SWSb4BuA9en4j6fwja+sYOEXbqoepD9lJ+efUGD94gSWqdmgQchGmPez2ojECq4Fm6bKMUAzIiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- flatpicker (Timepicker) JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </body>
 </html>

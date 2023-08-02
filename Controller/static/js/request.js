@@ -1,197 +1,149 @@
-// 0. 달력 선택 조정
-var today = new Date();
-// 오늘포함 이전 30일 까지 설정 for 상상기업
-// var thirtyDaysAgo = new Date();
-// thirtyDaysAgo.setDate(today.getDate() - 30);
 
-//  "YYYY-MM-DD"
-var formattedDate = today.toISOString().split('T')[0];
-// 30일 전 for 상상기업
-// var formattedT hirtyDaysAgo = thirtyDaysAgo.toISOString().split('T')[0];
+// 카메라 ID 변경
+var transformCameraName = "사용자 요청 영상 1";
+document.getElementById("cameraName").value = transformCameraName;
 
-var startDayInput = document.getElementById("startDay");
-startDayInput.value = formattedDate;
 
-// 오늘 날짜만
-startDayInput.setAttribute("max", formattedDate);
-startDayInput.setAttribute("min", formattedDate);
-// 오늘포함 이전 30일 까지만 선택 가능 코드 for 상상기업
-// startDayInput.setAttribute("min", formattedThirtyDaysAgo);
+// 날짜 선택 범위 0 + Today - 30
+$(document).ready(function() {
+    var today = new Date();
+    var thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(today.getDate() - 30);
 
-// 1. 시간 선택
-// jQuery 시간 선택기 옵션
-$(document).ready(function(){
-    // Bootstrap 라이브러리 초기화
-    // $('[data-toggle="tooltip"]').tooltip();
-    // $('[data-toggle="popover"]').popover();
-	$.datepicker.setDefaults({
+    var formattedDate = today.toISOString().split('T')[0];
+    var formattedThirtyDaysAgo = thirtyDaysAgo.toISOString().split('T')[0];
 
+    var startDayInput = document.getElementById("startDay");
+    startDayInput.value = formattedDate;
+    startDayInput.setAttribute("min", formattedThirtyDaysAgo);
+    startDayInput.setAttribute("max", formattedDate);
+})
+
+ // 시간 선택기 옵션
+document.addEventListener('DOMContentLoaded', function () {
+    var startTimePicker = flatpickr("#wantTime_s", {
+        enableTime: true,
+        enableSeconds: true,
+        noCalendar: true,
+        dateFormat: "H:i:S",
+        time_24hr: true,
+        defaultHour: 0,
+        minuteIncrement: 1,
+        position: "custom",
+        appendTo: document.querySelector(".time-container-1"),
+        inline: true,
+        onChange: validateTime
     });
-    
-    // 창 크기 변경하면 사라지게
-    $(window).resize(function () {
-      $("#ui-datepicker-div").css({ display: "none" });
-    })
 
-	// 토글? 형식  0~12.
-	// $('#wantTime_s').timepicker({
-	// 	controlType: 'select',
-	// 	oneLine: true,
-	// 	timeFormat: 'hh:mm:ss',
-	// 	hourMin: 0,
-	//     hourMax: 23
-	// });
-	// $('#wantTime_e').timepicker({
-	// 	controlType: 'select',
-	// 	oneLine: true,
-	// 	timeFormat: 'hh:mm:ss',
-	// 	hourMin: 0,
-	//     hourMax: 23
-	// });
-
-    // 해상도가 768px 이상인 경우에만 실행
-    if ($(window).width() >= 768) {
-        // 슬라이드 형식 0~23
-        var startTimeTextBox = $('#wantTime_s');
-        var endTimeTextBox = $('#wantTime_e');
-
-        $.timepicker.timeRange(
-            startTimeTextBox,
-            endTimeTextBox,
-            {
-                timeOnlyTitle: '시간 선택',
-                timeText: '시간',
-                hourText: '시',
-                minuteText: '분',
-                secondText: '초',
-                currentText: '현재 시간',
-                closeText: '완료',
-                // minInterval: (1000*60*60), // 1시간
-                // minInterval: (1000*5),  // 이 값은 5초.
-                timeFormat: 'HH:mm:ss',
-                start: {}, // 시작 선택기 옵션
-                end: {} // 끝 선택기 옵션
-            }
-        );
-    }
-});
-
-
-// 3. 유효성 검사
-$(document).ready(function(){
-    (function () {
-      // 'use strict'
-
-      var forms = document.querySelectorAll('.needs-validation')
-
-      Array.prototype.slice.call(forms).forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-          var inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-          var radioChecked = document.querySelector('input[name="part"]:checked');
-
-          // Check if all required inputs and radio button are filled
-          var allInputsFilled = Array.prototype.every.call(inputs, function(input) {
-            return input.checkValidity();
-          });
-
-          if (!allInputsFilled || !radioChecked) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('is-valid');
-        }, false);
-      });
-    })();
-
-    // 시간
-    $(document).ready(function() {
-  // Time picker validation
-  $('#wantTime_s').timepicker({
-    onClose: function(time) {
-      validateTimePicker();
-    }
-  });
-
-  $('#wantTime_e').timepicker({
-    onClose: function(time) {
-      validateTimePicker();
-    }
-  });
-
-  function validateTimePicker() {
-    var startTimeInput = $('#wantTime_s');
-    var endTimeInput = $('#wantTime_e');
-
-    if (startTimeInput.val() && endTimeInput.val()) {
-      startTimeInput.removeClass('is-invalid').addClass('is-valid');
-      endTimeInput.removeClass('is-invalid').addClass('is-valid');
-
-      var startTimeValue = new Date(`2000-01-01T${startTimeInput.val()}:00`);
-      var endTimeValue = new Date(`2000-01-01T${endTimeInput.val()}:00`);
-
-      if (startTimeValue.getTime() === endTimeValue.getTime()) {
-        endTimeInput.removeClass('is-valid');
-      } else if (startTimeValue.getTime() > endTimeValue.getTime()) {
-        endTimeInput.removeClass('is-valid');
-      }
-    } else {
-      startTimeInput.removeClass('is-valid').addClass('is-invalid');
-      endTimeInput.removeClass('is-valid').addClass('is-invalid');
-    }
-  }
-
-  // Radio button validation
-  var termRadios = document.getElementsByName("part");
-  var personalLabel = $('label[for="Personal"]');
-  var publicLabel = $('label[for="Public"]');
-
-  Array.from(termRadios).forEach(function(radio) {
-    radio.addEventListener("change", function() {
-      if (radio.checked) {
-        if (radio.value === "Personal") {
-          personalLabel.addClass("is-valid");
-          publicLabel.removeClass("is-valid");
-        } else if (radio.value === "Public") {
-          personalLabel.removeClass("is-valid");
-          publicLabel.addClass("is-valid");
-        }
-      }
+    var endTimePicker = flatpickr("#wantTime_e", {
+        enableTime: true,
+        enableSeconds: true,
+        noCalendar: true,
+        dateFormat: "H:i:S",
+        time_24hr: true,
+        defaultHour: 0,
+        minuteIncrement: 1,
+        position: "custom",
+        appendTo: document.querySelector(".time-container-2"),
+        inline: true,
+        onChange: validateTime
     });
-  });
-});
-});
 
+    // 유효성 검사 - 시간 선택기
+    function validateTime() {
+        var startTime = startTimePicker.selectedDates[0];
+        var endTime = endTimePicker.selectedDates[0];
 
-
-(function () {
-   'use strict'
-    var forms = document.querySelectorAll('.needs-validation')
-
-    Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      var inputs = form.querySelectorAll('input[required], select[required], textarea[required]')
-
-      Array.prototype.slice.call(inputs)
-        .forEach(function (input) {
-          input.addEventListener('input', function () {
-            if (input.checkValidity()) {
-              input.classList.remove('is-invalid')
-              input.classList.add('is-valid')
+        if (startTime && endTime) {
+            if (startTime.getTime() < endTime.getTime()) {
+                document.getElementById('wantTime_s').classList.add('is-valid');
+                document.getElementById('wantTime_s').classList.remove('is-invalid');
+                document.getElementById('wantTime_e').classList.add('is-valid');
+                document.getElementById('wantTime_e').classList.remove('is-invalid');
             } else {
-              input.classList.remove('is-valid')
-              input.classList.add('is-invalid')
+                document.getElementById('wantTime_s').classList.remove('is-valid');
+                document.getElementById('wantTime_s').classList.add('is-invalid');
+                document.getElementById('wantTime_e').classList.remove('is-valid');
+                document.getElementById('wantTime_e').classList.add('is-invalid');
             }
-          })
-        })
-
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+        } else {
+            if (startTime) {
+                document.getElementById('wantTime_s').classList.remove('is-valid');
+                document.getElementById('wantTime_s').classList.add('is-invalid');
+            }
+            if (endTime) {
+                document.getElementById('wantTime_e').classList.remove('is-valid');
+                document.getElementById('wantTime_e').classList.add('is-invalid');
+            }
         }
+    }
+});
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
+
+
+// 유효성 검사 - Check
+var part = document.getElementsByName('part');
+var terms = document.getElementById('terms');
+
+for (var i = 0; i < part.length; i++) {
+    part[i].addEventListener('change', function() {
+        for (var j = 0; j < part.length; j++) {
+            if (part[j].checked) {
+                part[j].classList.add('is-valid');
+            } else {
+                part[j].classList.remove('is-valid');
+            }
+        }
+    });
+}
+
+terms.addEventListener('click', function() {
+    terms.classList.remove('is-valid');
+});
+
+terms.addEventListener('change', function() {
+    if (terms.checked) {
+        terms.classList.add('is-valid');
+        terms.classList.remove('is-invalid');
+    } else {
+        terms.classList.remove('is-valid');
+        terms.classList.add('is-invalid');
+    }
+});
+
+
+// 유효성 검사 - Submit
+document.getElementById('form').addEventListener('submit', function(event) {
+    var startTimeValue = startTime.value;
+    var endTimeValue = endTime.value;
+    var termsChecked = terms.checked;
+
+    var messages = [];
+
+    if (startTimeValue >= endTimeValue) {
+        messages.push('시작 시간은 종료 시간보다 이전이어야 합니다.');
+    }
+
+    var partSelected = false;
+    for (var i = 0; i < part.length; i++) {
+        if (part[i].checked) {
+            partSelected = true;
+            break;
+        }
+    }
+
+    if (!partSelected) {
+        messages.push('열람 사유를 선택해주세요.');
+    }
+
+    if (!termsChecked) {
+        messages.push('법적 고지 및 약관에 동의해주세요.');
+    }
+
+    if (messages.length > 0) {
+        alert(messages.join('\n'));
+        event.preventDefault();
+    }
+});
+
+
