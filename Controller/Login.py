@@ -14,7 +14,10 @@ loginController = Blueprint("loginPage", __name__, url_prefix="/")
 def loginPage():
     if request.method == 'POST':
         try:
-            User.login(request.form['user'], request.form['pwd'])
+            #로그인 요청 후
+            id, name = User.login(request.form['user'], request.form['pwd'])
+            session['id'] = id
+            session['name'] = name
             #이전페이지 감지 후 페이지로 이동
             if request.form['prev'] != 'None' and request.form['cameraID'] != 'None':
                 return redirect(url_for(request.form['prev'], cameraID=request.form['cameraID']))
@@ -34,5 +37,6 @@ def logoutPage():
         return redirect('/')
 
     # 실제 페이지구현
-    User.logout()
+    session.clear()
+    session.modified = True
     return redirect('/')

@@ -20,4 +20,3 @@ def SelectUser(id,pw):
 
     except Exception as e:
         raise e
-
