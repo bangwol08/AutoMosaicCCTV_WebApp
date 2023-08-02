@@ -1,11 +1,12 @@
 from flask import Blueprint
 from flask import render_template
-from flask import request
 from flask import session
-from flask import flash
 from flask import redirect
-from flask import url_for
-from Operation import User
+
+import pymysql as db
+from DAO import DBConnection
+from DAO import VideoDAO as video
+
 
 videoListController = Blueprint("videoListPage", __name__, url_prefix="/")
 

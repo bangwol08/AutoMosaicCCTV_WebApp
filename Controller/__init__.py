@@ -1,7 +1,7 @@
 from flask import Flask
 from . import Login
 from . import Index
-from . import Video
+from . import videoList
 
 app = Flask(__name__)
 
@@ -12,4 +12,4 @@ app.register_blueprint(Index.indexController)
 app.register_blueprint(Login.loginController)
 
 #영상관련 기능 관련 페이지
-app.register_blueprint(Video.videoController)
+app.register_blueprint(videoList.videoListController)
