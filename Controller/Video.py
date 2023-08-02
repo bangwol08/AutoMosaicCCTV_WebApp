@@ -9,6 +9,16 @@ from Operation import Video
 
 videoController = Blueprint("videoPage", __name__, url_prefix="/")
 
+#영상 QR코드페이지 구현
+@videoController.route('/QRreader')
+def QRreader():
+    #세션관리(세션이 없을때(로그인이 되어있지 않을때) index로 돌아감)
+    if 'id' not in session:
+        return redirect('/')
+
+    #실제페이지 구현
+    return render_template('QRreader.html')
+
 #영상신청페이지 구현
 @videoController.route('/videoRequest', methods=['GET', 'POST'])
 def videoRequestPage():
