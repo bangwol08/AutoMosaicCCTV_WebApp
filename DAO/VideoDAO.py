@@ -18,7 +18,7 @@ def InsertVideo(videoPath, videoName, sliceingCount, data):
         # 운영체제 감지 후 상황에 맞는 파일기본정보 및 처리상태 insert
         if platform.system() == 'Windows':
             cursor.execute(sql, (
-            f'{videoPath[sliceingCount:]}{videoName}.mp4', data['UserId'], data['cameraName'], data['startDay'], data['wantTime_s'], data['wantTime_e'], data['part'],
+            f'{videoPath[sliceingCount:]}{videoName}', data['UserId'], data['cameraName'], data['startDay'], data['wantTime_s'], data['wantTime_e'], data['part'],
             data['reason'], data['progress']))
         elif platform.system() == 'Linux':
             cursor.execute(sql, (
@@ -26,8 +26,10 @@ def InsertVideo(videoPath, videoName, sliceingCount, data):
             data['reason'], data['progress']))
 
         connection.commit()
+        connection.close()
 
     except Exception as e:
+        connection.close()
         raise e
 
 def UpdateVideo_Err(videoPath, videoName, sliceingCount, UserId):
@@ -46,13 +48,14 @@ def UpdateVideo_Err(videoPath, videoName, sliceingCount, UserId):
 
         # 운영체제 감지 후 그에 맞는 쿼리 문 실행
         if platform.system() == 'Windows':
-            cursor.execute(sql, ('error', f'{videoPath[sliceingCount]}{videoName}.mp4', UserId))
+            cursor.execute(sql, ('error', f'{videoPath[sliceingCount]}{videoName}', UserId))
         elif platform.system() == 'Linux':
             cursor.execute(sql, ('error', f'{videoPath[sliceingCount]}{videoName}_h264.mp4', UserId))
 
         connection.commit()
         connection.close()
     except Exception as e:
+        connection.close()
         raise e
 
 def UpdateVideo_Com(videoPath, videoName, sliceingCount, UserId):
@@ -71,13 +74,14 @@ def UpdateVideo_Com(videoPath, videoName, sliceingCount, UserId):
 
         # 운영체제 감지 후 그에 맞는 쿼리 문 실행
         if platform.system() == 'Windows':
-            cursor.execute(sql, ('complete', f'{videoPath[sliceingCount:]}{videoName}.mp4', UserId))
+            cursor.execute(sql, ('complete', f'{videoPath[sliceingCount:]}{videoName}', UserId))
         elif platform.system() == 'Linux':
             cursor.execute(sql, ('complete', f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', UserId))
 
         connection.commit()
         connection.close()
     except Exception as e:
+        connection.close()
         raise e
 
 # videoList
@@ -95,9 +99,11 @@ def getListRow(id):
         sql = "SELECT count(*) FROM videoList WHERE user_id=%s"
         cursor.execute(sql, (id))
         row = cursor.fetchone()
+        connection.close()
         return row
 
     except Exception as e:
+        connection.close()
         return e
 
 def getList(id):
@@ -114,7 +120,9 @@ def getList(id):
         sql = "SELECT * FROM videoList WHERE user_id=%s"
         cursor.execute(sql, (id))
         row = cursor.fetchall()
+        connection.close()
         return row
 
     except Exception as e:
+        connection.close()
         return e

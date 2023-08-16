@@ -48,6 +48,7 @@ def videoRequestPage():
         try:
             Video.makeVideo(data)
         except Exception as e:
+            print(e)
             return e
 
         return redirect('/videoList')

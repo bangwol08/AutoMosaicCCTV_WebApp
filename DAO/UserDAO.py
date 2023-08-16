@@ -16,6 +16,7 @@ def SelectUser(id,pw):
         sql = "SELECT id, name FROM login WHERE id=%s AND password=%s"
         cursor.execute(sql, (id, pwhash))
         row = cursor.fetchone()
+        connection.close()
         return row
 
     except Exception as e:
