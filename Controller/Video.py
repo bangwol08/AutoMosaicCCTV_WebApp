@@ -5,6 +5,7 @@ from flask import request
 from flask import session
 from flask import redirect
 from flask import url_for
+from flask import flash
 from Operation import Video
 
 videoController = Blueprint("videoPage", __name__, url_prefix="/")
@@ -48,8 +49,9 @@ def videoRequestPage():
         try:
             Video.makeVideo(data)
         except Exception as e:
-            print(e)
-            return e
+            if '1062' in str(e.args):
+                flash("이미 동일한 시간대의 영상을 신청하였습니다.")
+            return render_template('videoRequest.html', cameraName=request.args.get('cameraID'))
 
         return redirect('/videoList')
 
