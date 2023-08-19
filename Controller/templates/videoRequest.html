@@ -51,6 +51,15 @@
 
 </head>
 <body>
+    <!--flash를 위한 구문-->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert("{{messages[-1]}}")
+            </script>
+        {% endif %}
+    {% endwith %}
+
     <!-- 네비게이션바-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">{% include 'nav.html' %}</nav>
 
@@ -96,12 +105,12 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cameraName"><strong>카메라ID 또는 위치</strong></label>
-                                <input id="cameraName" type="text" class="form-control is-valid" value="{{ user_ID }} - 요청 영상 1" name="cameraName" readonly required>
+                                <input id="cameraName" type="text" class="form-control is-valid" value="{{ user_ID }}" name="temp" readonly required>
                                 <div class="invalid-feedback">
                                     카메라ID나 위치가 올바르지 않습니다
                                 </div>
                                 <input type="hidden" id="prev" name="prev" value={{ prev }}>
-                                <input type="hidden" id="cameraID" name="cameraID" value={{ cameraID }}>
+                                <input type="hidden" id="cameraName" name="cameraName" value={{ cameraName }}>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="startDay"><strong>원하는 날짜</strong></label>
@@ -121,10 +130,10 @@
                             <div class="col-md-6 mb-3">
                                 <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
                                 <div class="time-container-1">
-                                    <input type="text" id="wantTime_s" class="form-control" placeholder="시작시간 입력" required>
+                                    <input type="text" id="wantTime_s" name="wantTime_s" class="form-control" placeholder="시작시간 입력" required>
                                 </div>
                                 <div class="time-container-2">
-                                    <input type="text" id="wantTime_e" class="form-control" placeholder="종료시간 입력" required>
+                                    <input type="text" id="wantTime_e" name="wantTime_e" class="form-control" placeholder="종료시간 입력" required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
                                     ex) 영상의 1시간 지점부터 2시간 지점까지
