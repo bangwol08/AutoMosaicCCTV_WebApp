@@ -1,5 +1,7 @@
 import platform
 import os
+import threading
+
 import cv2
 import glob
 from datetime import datetime, timedelta
@@ -67,7 +69,7 @@ def makeVideo(data):
         #완료 후 complete상태 업데이트
         VideoDAO.UpdateVideo_Com(videoPath, videoName, sliceingCount, data['UserId'])
 
-    except:
+    except Exception as e:
         #에러시 err상태 업데이트 및 out1 release
         VideoDAO.UpdateVideo_Err(videoPath, videoName, sliceingCount, data['UserId'])
         out1.release()
