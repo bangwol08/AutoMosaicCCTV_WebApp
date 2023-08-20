@@ -1,8 +1,4 @@
 
-// 카메라 ID 변경
-var transformCameraName = "사용자 요청 영상 1";
-document.getElementById("cameraName").value = transformCameraName;
-
 
 // 날짜 선택 범위 0 + Today - 30
 $(document).ready(function() {
