@@ -34,10 +34,9 @@
 
     <!-- 사용자CSS -->
     <!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">-->
-    <!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/law.css') }}">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/videosort.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+
 
     <!-- 요청부 -->
     <script>
@@ -88,16 +87,16 @@
                             </span>
                         </div>
                     {% endif %}
-                        <div class="video-info">
-                            <!-- Display video information here -->
-                            <!-- You can access item[1], item[2], and so on for the video attributes -->
+                    <div class="video-info">
+                        <!-- Display video information here -->
+                        <!-- You can access item[1], item[2], and so on for the video attributes -->
 
-                            <!-- Add a delete button for each video -->
-                            {% if item[8] == "complete" %}
-                                <button class="delete-button" data-video-id="{{ item[0] }}">Delete Video</button>
-                            {% endif %}
-                        </div>
-
+                        <!-- Add a delete button for each video -->
+                        {% if item[8] == "complete" %}
+                            <textarea class="text-area" data-video-id="{{ item[0] }}">영상정보 위치</textarea><br>
+                            <button class="delete-button" data-video-id="{{ item[0] }}">영상삭제</button>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -109,8 +108,9 @@
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
 <!-- 사용자 JS -->
-<script src="{{ url_for('static', filename='js/law.js') }}"></script>
 <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+<script src="{{ url_for('static', filename='js/video.js') }}"></script>
 
 </body>
 </html>

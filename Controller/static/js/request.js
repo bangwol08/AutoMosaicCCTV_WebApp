@@ -110,14 +110,20 @@ terms.addEventListener('change', function() {
 
 // 유효성 검사 - Submit
 document.getElementById('form').addEventListener('submit', function(event) {
-    var startTimeValue = startTime.value;
-    var endTimeValue = endTime.value;
+    var startTimeValue = wantTime_s.value;
+    var endTimeValue = wantTime_e.value;
     var termsChecked = terms.checked;
 
     var messages = [];
 
-    if (startTimeValue >= endTimeValue) {
-        messages.push('시작 시간은 종료 시간보다 이전이어야 합니다.');
+    if (!startTimeValue && !endTimeValue) {
+        messages.push('시작 시간과 종료 시간을 입력해주세요.');
+    } else if (!startTimeValue) {
+        messages.push('시작 시간을 입력해주세요.');
+    } else if (!endTimeValue) {
+        messages.push('종료 시간을 입력해주세요.');
+    } else if (startTimeValue >= endTimeValue) {
+        messages.push('시작 시간은 종료 시간보다 빨라야 합니다.');
     }
 
     var partSelected = false;
