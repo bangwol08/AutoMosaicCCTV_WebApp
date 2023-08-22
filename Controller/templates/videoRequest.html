@@ -106,18 +106,13 @@
                             <div class="col-md-6 mb-3">
                                 <label for="cameraName"><strong>카메라ID 또는 위치</strong></label>
                                 <input id="cameraName" type="text" class="form-control is-valid" value="{{ user_ID }}" name="temp" readonly required>
-                                <div class="invalid-feedback">
-                                    카메라ID나 위치가 올바르지 않습니다
-                                </div>
+
                                 <input type="hidden" id="prev" name="prev" value={{ prev }}>
                                 <input type="hidden" id="cameraName" name="cameraName" value={{ cameraName }}>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="startDay"><strong>원하는 날짜</strong></label>
                                 <input id="startDay" class="form-control is-valid" type="date" name="startDay" max="today" min="today" required>
-                                <div class="invalid-feedback">
-                                    날짜를 입력해주세요
-                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -125,7 +120,7 @@
                                 <label for="terms" class="form-check-label form-check-inline "><strong>열람 사유 &nbsp; &nbsp;</strong></label>
                                 <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무
-{#                                <textarea cols="38" rows="3" placeholder="간단히 적어주세요."></textarea>#}
+                                <textarea id="part-write" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>

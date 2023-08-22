@@ -1,10 +1,10 @@
 
 // 카메라 ID 변경
-var transformCameraName = "사용자 요청 영상 1";
+var transformCameraName = "사용자 요청 영상 ";
 document.getElementById("cameraName").value = transformCameraName;
 
 
-// 날짜 선택 범위 0 + Today - 30
+// 날짜 선택 범위 0 + Today - 30    input에 직접 타이핑하게 되면 선택하지 못하는 부분을 입력할 수 있게됨
 $(document).ready(function() {
     var today = new Date();
     var thirtyDaysAgo = new Date();

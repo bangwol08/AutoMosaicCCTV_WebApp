@@ -1,4 +1,4 @@
-const player = new Plyr('video', {captions: {active: true}});
+import Plyr from 'plyr';
 
-// Expose player so it can be used from the console
-window.player = player;
+const players = Plyr.setup('.js-player');
+
