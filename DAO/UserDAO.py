@@ -20,4 +20,5 @@ def SelectUser(id,pw):
         return row
 
     except Exception as e:
+        connection.close()
         raise e

@@ -37,6 +37,7 @@
 
     <!-- 사용자CSS -->
     <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Location.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/law.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/request.css') }}">
 
@@ -96,6 +97,8 @@
                 </div>
             </div>
         </div>
+
+
             <!-- 컨텐츠 표시 -->
             <div id="myform" class="text-center bg-light text-dark bg-opacity-100 d-inline-block" >
             <div class="m-3 p-3">
@@ -104,15 +107,24 @@
                     <div class="form-group ">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="cameraName"><strong>카메라ID 또는 위치</strong></label>
-                                <input id="cameraName" type="text" class="form-control is-valid" value="{{ user_ID }}" name="temp" readonly required>
+                                <label for="cameraName"><strong>카메라ID 및 위치</strong></label>
+                                <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="{{ cameraName }}" readonly required>
+                                &nbsp;
+                                <button class="btn btn-primary btn-lg btn-block" name = "getLocationBtn" id="getLocationBtn" type="button" onclick="getLocation()">위치정보수집동의</button>
+                                <input type="hidden" id="location" name="location" placeholder="Location will appear here" readonly>
 
+                                <div class="invalid-feedback">
+                                    카메라ID나 위치가 올바르지 않습니다
+                                </div>
                                 <input type="hidden" id="prev" name="prev" value={{ prev }}>
                                 <input type="hidden" id="cameraName" name="cameraName" value={{ cameraName }}>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="startDay"><strong>원하는 날짜</strong></label>
                                 <input id="startDay" class="form-control is-valid" type="date" name="startDay" max="today" min="today" required>
+                                <div class="invalid-feedback">
+                                    날짜를 입력해주세요
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -120,7 +132,7 @@
                                 <label for="terms" class="form-check-label form-check-inline "><strong>열람 사유 &nbsp; &nbsp;</strong></label>
                                 <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무
-                                <textarea id="part-write" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
+                                <textarea name="partText" id="partText" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
