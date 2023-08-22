@@ -81,6 +81,16 @@
                             </span>
                         </div>
                     {% endif %}
+                    <div class="video-info">
+                        <!-- Display video information here -->
+                        <!-- You can access item[1], item[2], and so on for the video attributes -->
+
+                        <!-- Add a delete button for each video -->
+                        {% if item[8] == "complete" %}
+                            <textarea class="text-area" data-video-id="{{ item[0] }}">영상정보 위치</textarea><br>
+                            <button class="delete-button" data-video-id="{{ item[0] }}">영상삭제</button>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
