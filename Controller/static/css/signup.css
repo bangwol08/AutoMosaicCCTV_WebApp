@@ -1,23 +1,30 @@
-body{
-    height: 40%;
-    width: 80%;
-}
 #myform {
-        width: 700px;
-        top:45%;
+        width: 120%;
         border-radius: 10px;
         box-shadow: 5px 5px 5px 5px;
+        padding: 20px;
+        top: 100px;
         position: relative;
-        left:40%
+        left: 10%;
+        text-align: center;
+}
+body{
+    width: 70%;
+    height: 70%;
+}
+.sort{
+    position: relative;
+    top: 30%;
+    left:33%;
+}
+.margin {
+    height: 300px;
 }
 
 @media (max-width: 1024px) {
     #myform {
-        top:55%;
+        top:30%;
         position: relative;
-    }
-    body{
-        width: 40%;
     }
 
 }
@@ -26,7 +33,7 @@ body{
     #myform {
         width: 90%;
         max-width: 700px;
-        top:60%;
+        top:40%;
         position: relative;
         left: 5%;
     }
@@ -35,4 +42,3 @@ body{
     }
 
 }
-
