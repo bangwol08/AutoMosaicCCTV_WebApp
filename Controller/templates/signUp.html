@@ -28,6 +28,11 @@
     <!-- jquery_inlcude -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <!-- 사용자CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/slide.css') }}">
 
@@ -55,34 +60,40 @@
 <body>
 <!-- 네비게이션바-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">{% include 'nav.html' %}</nav>
-<div id="myform" class="text-center bg-light text-dark bg-opacity-100 d-inline-block" >
-    <div class="m-3 p-3">
+<div id="myform" class="bg-light text-dark bg-opacity-100" >
         <form class="validation-form" action="/regist" method="post">
             <div class="form-group ">
+                <h1 id ="title" class="text-center">SIGNUP</h1><br><br>
                 <div class="mb-3">
                     <label for="id" class="form-label">아이디</label>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="id" name = "id" placeholder="아이디를 입력해주세요" value="{{ id }}" required>
                     </div>
+                    <p id="idvalidation" class="text-danger"></p>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="password">패스워드</label>
                         <input type="password" class="form-control" id="password" name = "password" placeholder="비밀번호를 입력해주세요" required>
+                        <p id="pwvalidation" class="text-danger"></p>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="passcheck">패스워드 확인</label>
                         <input type="password" class="form-control" id="passcheck" name = "password" placeholder="비밀번호를 확인해주세요">
+                        <p id="pwcvalidation" class="text-danger"></p>
                     </div>
+                    <div id="passwordupdateArea"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="name">이름</label>
                         <input type="text" class="form-control" id="name" name = "name" placeholder="이름을 입력해주세요" required>
+                        <p id="namevalidation" class="text-danger"></p>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="age">나이</label>
                         <input type="text" class="form-control" id="age" name = "age" placeholder="나이를 입력해주세요" required>
+                        <p id="agevalidation" class="text-danger"></p>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="gender">성별</label>
@@ -96,24 +107,59 @@
                 <div class="mb-3">
                     <label for="phonenum">전화번호</label>
                     <input type="text" class="form-control" id="phonenum" name = "phonenum" placeholder="전화번호를 입력해주세요" required>
+                    <p id="numvalidation" class="text-danger"></p>
                 </div>
+                <div id="emailupdateArea"></div>
                 <div class="mb-3">
                     <label for="email">이메일</label>
                     <input type="email" class="form-control" id="email" name = "email" placeholder="이메일을 입력해주세요" required>
                 </div>
-
                 <div class="mb-3">
                     <label for="address">주소</label>
                     <input type="text" class="form-control" id="address" name = "address" placeholder="주소를 입력해주세요" required>
+                    <p id="addressvalidation" class="text-danger"></p>
                 </div>
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="aggrement" name = "aggrement">
+                    <input type="checkbox" class="custom-control-input" id="aggrement" name = "aggrement" data-toggle="modal" data-target="#exampleModal">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">법적고지</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                               <h5>1. 법적 고지</h5><br>
+                                <p>- 정보주체는 영상정보처리기기 운영자가 처리하는 개인
+                                    영상정보에 대하여 열람, 존재확인을 해당 영상정보
+                                    처리기기 운영자에게 요구할 수 있습니다.
+                                <p>- 이 경우 정보주체가 열람, 존재확인을 요구할 수 있는
+                                     개인영상 정보는 <strong style="color:Tomato;">정보주체 자신이 촬영된 개인영상정보</strong> 및
+                                     <strong style="color:Tomato;">명백히 정보주체의 급박한 생명, 신체, 재산의 이익을 위하여 필요한 개인영상정보</strong>에 한합니다.
+                                <p>- 공공기관에 대한 열람, 존재확인요구는 “개인영상정보 열람․존재 확인 청구서(전자문서를 포함한다)”로 하여야 합니다.
+                                <p>- 열람, 존재확인 요구를 받았을 때에는 <strong style="color:Tomato;">열람, 존재확인 요구를 한 자가 본인이거나 정당한 대리인인지를
+                                   신분증명서(주민등록증, 운전면허증, 여권 등)를 제출받아 확인하고</strong>, 지체없이 필요한 조치를 취하여야 합니다.
+                                <p>- 각종 범법행위(절도, 폭행 등) 또는 사고(차량파손, 교통사고 등)의 확인 등을 목적으로 개인이 영상자료의 열람, 제공을 요청하는 경우에는 이를 열람, 제공할 수 없습니다.
+                            <p>- 다만, <strong style="color:Tomato;">범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우</strong> 또는 <strong style="color:Tomato;">법원의 재판업무 수행을 위하여 필요한 경우</strong>에는 이를 열람, 제공할 수 있습니다.<br><br>
+                            <h5>2. 약관</h5><br>
+                            <p>- 본 사용자는 해당 법적 고지를 이해하고 위반하지 않겠음을 동의해야 합니다. <br><br>
+                            <h5>3. 테스트</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('terms').checked = false">닫기</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="document.getElementById('terms').checked = true">동의하기</button>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
                     <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
                 </div>
                 <div class="mb-4">
                 </div>
-                <button class="btn btn-primary btn-lg btn-block" type="submit" name = "button">가입 완료</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" name = "button" id ="submit">가입 완료</button>
             </div>
         </form>
     </div>
@@ -121,6 +167,12 @@
 <div class="h-100">
 </div>
 <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+<script src="{{ url_for('static', filename='js/formal.js') }}"></script>
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
 </body>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
