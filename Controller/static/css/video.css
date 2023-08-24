@@ -1,227 +1,113 @@
-.wrapper {
-  --color: #1F242D;
-  --color-invert: #ffffff;
-  --clip-path: circle(15px at left);
-  --clip-path-hover: circle(70px at left);
-  --clip-path-clicked: circle(100vw at left);
-  --duration: .4s;
-  --timing-function: ease;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  border: solid 5px black;
-  /* 이하 추가된 부분 */
-  margin: 0;
-  padding: 0;
+#myform {
+        width: 120%;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px;
+        padding: 20px;
+        top: 100px;
+        position: relative;
+        left: 10%;
+        text-align: center;
 }
-.wrapper .video {
-  /*height: 100vh;*/
-  height: 160px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 15px;
-  -webkit-clip-path: var(--clip-path);
-          clip-path: var(--clip-path);
-  transition: -webkit-clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function), -webkit-clip-path var(--duration) var(--timing-function);
-  /* 이하 추가된 부분 */
-  max-height: 500px;
+body{
+    width: 70%;
+    height: 70%;
+}
+.sort{
+    position: relative;
+    top: 30%;
+    left:33%;
+}
+.margin {
+    height: 300px;
 }
 
-.wrapper .video video {
-  position: fixed;
-  background: #c4cbde;
-  top: 50%;
-  left: 50%;
-  min-width: 40%;
-  min-height: 40%;
-  width: auto;
-  height: auto;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  border-radius: 10px;
-}
-.wrapper .text {
-  position: relative;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: .2px;
-  opacity: var(--opacity, 1);
-  transition: opacity 0.3s var(--timing-function) 0.2s;
-}
-.wrapper .text::before, .wrapper .text::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -1px;
-  right: 25px;
-  height: 0;
-}
-.wrapper .text::before {
-  box-shadow: 26px 0 0 1px var(--color);
-  right: var(--r, 100%);
-  opacity: var(--opacity, 0);
-  transition: right .5s ease-in, opacity .1s linear;
-}
-.wrapper .text::after {
-  box-shadow: 26px 0 0 1px var(--color-invert);
-  -webkit-clip-path: var(--clip-path);
-          clip-path: var(--clip-path);
-  transition: -webkit-clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function), -webkit-clip-path var(--duration) var(--timing-function);
-}
-.wrapper .text > span::before, .wrapper .text > span::after {
-  content: attr(data-text);
-  padding-left: 26px;
-}
-.wrapper .text > span::before {
-  color: var(--color);
-}
-.wrapper .text > span::after {
-  color: var(--color-invert);
-  -webkit-clip-path: var(--clip-path);
-          clip-path: var(--clip-path);
-  transition: -webkit-clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function);
-  transition: clip-path var(--duration) var(--timing-function), -webkit-clip-path var(--duration) var(--timing-function);
-  position: absolute;
-  left: 0;
-}
-.wrapper input {
-  width: 20px;
-  height: 40px;
-  margin: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  border-radius: 40px;
-  z-index: 2;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  cursor: pointer;
-}
-.wrapper input:focus {
-  outline: 0;
-}
-.wrapper input:hover ~ .video {
-  -webkit-clip-path: var(--clip-path-hover);
-          clip-path: var(--clip-path-hover);
-}
-.wrapper input:hover ~ .text::before {
-  --r: 25px;
-  --opacity: 1;
-}
-.wrapper input:hover ~ .text::after {
-  -webkit-clip-path: var(--clip-path-hover);
-          clip-path: var(--clip-path-hover);
-}
-.wrapper input:hover ~ .text > span::after {
-  -webkit-clip-path: var(--clip-path-hover);
-          clip-path: var(--clip-path-hover);
-}
-.wrapper input:checked {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-}
-.wrapper input:checked ~ .video {
-  -webkit-clip-path: var(--clip-path-clicked);
-          clip-path: var(--clip-path-clicked);
-}
-.wrapper input:checked ~ .text {
-  --opacity: 0;
-  transition: opacity 0.3s var(--timing-function);
-}
-.wrapper input:checked ~ .text::after {
-  -webkit-clip-path: var(--clip-path-clicked);
-          clip-path: var(--clip-path-clicked);
-}
-.wrapper input:checked ~ .text > span::after {
-  -webkit-clip-path: var(--clip-path-clicked);
-          clip-path: var(--clip-path-clicked);
+/*@media (max-width: 1024px) {*/
+/*    .video-card {*/
+/*        width: 50%;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+/*    .video-card {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+/*.video-container {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    padding-top: 56.25%; !* 16:9 aspect ratio (9 / 16 * 100%) *!*/
+/*    border: 1px solid gray;*/
+/*}*/
+
+/*.video-container video {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+.mainclass {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
-body {
-  /*background: #E8EBF3;*/
-  /*height: 100vh;*/
-  font: 400 16px 'Poppins', sans-serif;
-  /*display: flex;*/
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.video-container {
+    position: relative;
+    max-width: 100%; /* 최대 너비를 제한 */
+    max-height: 185.33px; /* Set maximum height */
+    /*padding-top: 56.25%; !* 16:9의 비율 *!*/
+    border: 1px solid gray;
+    overflow: hidden; /* 내용이 카드 테두리를 벗어나지 않도록 */
+}
+
+/* video 태그는 이전과 동일한 스타일 적용 */
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*height: 100%;*/
+    height: 185.33px;
+    object-fit: contain;
 }
 
 
-@media (max-width: 991px) {
-   .wrapper {
-      --color: #1F242D;
-      --color-invert: #ffffff;
-      --clip-path: circle(15px at left);
-      --clip-path-hover: circle(70px at left);
-      --clip-path-clicked: circle(100vw at left);
-      --duration: .4s;
-      --timing-function: ease;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      border: solid 5px black;
-      margin: 0;
-      padding: 0;
-    }
 
-    /* 작게 미리 보여주기  */
-    .wrapper .video {
-      /*height: 100vh;*/
-      height: 160px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 15px;
-      -webkit-clip-path: var(--clip-path);
-              clip-path: var(--clip-path);
-      transition: -webkit-clip-path var(--duration) var(--timing-function);
-      transition: clip-path var(--duration) var(--timing-function);
-      transition: clip-path var(--duration) var(--timing-function), -webkit-clip-path var(--duration) var(--timing-function);
-      /* 이하 추가된 부분 */
-      max-height: 500px;
+/* 카드 */
+.video-card {
+    border: 2px solid #808080;
+    flex: 0 0 50%; /* 두 개의 영상 카드가 한 행에 배치되도록 설정 */
+    box-sizing: border-box; /* 테두리와 여백을 포함한 크기 계산 */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    /*display: flex;*/
+    display: inline-block; /* Display cards in a row */
+    vertical-align: top; /* Align cards at the top of the row */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow */
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .video-card {
+        flex: 0 0 50%; /* 화면 너비가 768px 이상일 때 두 개의 영상 카드를 한 행에 표시 */
     }
 }
 
+@media (min-width: 1024px) {
+    .video-card {
+        flex: 0 0 33.33%; /* 화면 너비가 1200px 이상일 때 세 개의 영상 카드를 한 행에 표시 */
+    }
+}
+
+.video-card .video-info {
+  margin: 10px 0;
+}
 
 
-/*body .socials {*/
-/*  position: fixed;*/
-/*  display: block;*/
-/*  left: 20px;*/
-/*  bottom: 20px;*/
-/*  z-index: 9999;*/
-/*}*/
-/*body .socials > a {*/
-/*  display: block;*/
-/*  width: 30px;*/
-/*  opacity: .2;*/
-/*  -webkit-transform: scale(var(--scale, 0.8));*/
-/*          transform: scale(var(--scale, 0.8));*/
-/*  transition: -webkit-transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);*/
-/*  transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);*/
-/*  transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91), -webkit-transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);*/
-/*}*/
-/*body .socials > a:hover {*/
-/*  --scale: 1;*/
-/*}*/
 
-/*.content {*/
-/*  background: linear-gradient(to bottom, rgba(100, 100, 100, 0.8) 0%, rgba(100, 100, 100, 0.8) 100%),*/
-/*  url(../sourse/img.jpg);*/
 
-/*}*/
