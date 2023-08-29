@@ -74,6 +74,29 @@ body{
     object-fit: contain;
 }
 
+.btn-primary2 {
+    color: #fff;
+    background-color: darkred;
+    border-color: darkred;
+}
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
+}
+
+.video-info-button {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.bt-group {
+    display: flex;
+    justify-content: space-between; /* Adjust the spacing between buttons */
+    margin-top: 10px
+}
 
 
 /* 카드 */
@@ -95,12 +118,15 @@ body{
 @media (min-width: 768px) {
     .video-card {
         flex: 0 0 50%; /* 화면 너비가 768px 이상일 때 두 개의 영상 카드를 한 행에 표시 */
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
 @media (min-width: 1024px) {
     .video-card {
-        flex: 0 0 33.33%; /* 화면 너비가 1200px 이상일 때 세 개의 영상 카드를 한 행에 표시 */
+        flex: 0 0 31.5%; /* 화면 너비가 1200px 이상일 때 세 개의 영상 카드를 한 행에 표시 */
     }
 }
 

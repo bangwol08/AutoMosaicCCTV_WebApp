@@ -42,7 +42,7 @@
     <!-- 사용자 JS -->
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
     <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/video.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/List.js') }}"></script>
 
 
     <!-- 요청부 -->
@@ -72,30 +72,48 @@
                     <div class="video-card card{{ loop.index }}">
                         {% if item[8] == "complete" %}
                             <div class="video-container">
-                                <video id="players" style="position: static;" controls width="500">
+                                <video id="players{{ loop.index }}" style="position: static;" controls width="500">
                                     <source src="{{url_for('static', filename=item[0])}}" type="video/mp4">
                                     <a href="{{url_for('static', filename=item[0])}}">MP4</a>
                                 </video>
                             </div>
-                            <div class="video-info">
-                                <div class="accordion" id="accordionExample{{ loop.index }}">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
-                                                영상정보
-                                            </button>
-                                        </h2>
-                                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample{{ loop.index }}">
-                                            <div class="accordion-body">
-                                                <p><strong>Video Title:</strong> {{ item[1] }}</p>
-                                                <p><strong>Requested By:</strong> {{ item[2] }}</p>
-                                                <p><strong>Request Time:</strong> {{ item[3] }}</p>
-                                            </div>
-                                        </div>
+                            <div class="card-body">
+                                <div class="card">
+                                   <div class="card-header">
+                                       <h5 class="card-title">영상정보</h5>
+                                   </div>
+                                   <ul class="list-group list-group-flush">
+                                       <li class="list-group-item">
+                                            <p><strong>신청자:</strong> {{ item[1] }}</p>
+                                            <p><strong>카메라ID:</strong> {{ item[2] }}
+                                            </p><p><strong>신청 날짜:</strong> {{ item[3] }}</p>
+                                        </li>
+                                   </ul>
+                                </div>
+                                <div class="bt-group">
+                                    <button class="btn btn-primary">기한연장</button>
+                                    <button class="btn btn-primary2 btn-block delete-button" data-video-id="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">영상삭제</button>
+                                </div>
+
+                                <!-- 삭제 안내 -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">주의!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        정말로 삭제하시겠습니까?
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-primary delete-action">확인</button>
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                      </div>
                                     </div>
+                                  </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary  btn-block delete-button" data-video-id="{{ item[0] }}">영상삭제</button>
                         {% else %}
                             <div style="text-align: center; position: static;">
                                 <span class="back" style="overflow: hidden">
@@ -114,6 +132,13 @@
     </div>
 
 </main>
+<script>
+    // Popover
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('.video-info-button'))
+    popoverTriggerList.forEach(function (popoverTriggerEl) {
+        var popover = new bootstrap.Popover(popoverTriggerEl);
+    });
+</script>
 
 </body>
 </html>
