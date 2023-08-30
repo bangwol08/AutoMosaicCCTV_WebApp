@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function deleteVideo(cardId, videoName) {
-        // Send an AJAX request to the backend to delete the video
-        // You can use Fetch or other AJAX libraries here
+
         fetch(`/DeleteVideo/${cardId}`, {
             method: 'POST',
             body: JSON.stringify({ videoName: videoName }),
