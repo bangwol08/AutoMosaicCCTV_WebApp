@@ -51,7 +51,7 @@ pw.addEventListener('input', function(event) {
 });
 pwc.addEventListener('input', function(event) {
     const inputA = pw.value;
-    const inputB = pwc.vlaue;
+    const inputB = pwc.value;
     if (inputA != inputB) {
         pwcvalidation.textContent = '입력하신 비밀번호와 맞지 않습니다.'
         submit.disabled = true;

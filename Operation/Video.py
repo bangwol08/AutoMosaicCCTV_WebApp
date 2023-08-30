@@ -12,10 +12,12 @@ def makeVideo(data):
     if platform.system() == 'Windows':
         videoPath = f"./Controller/static/video/{data['UserId']}/"
         videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '%H_%M_%S')}.mp4"
+        folder_dir = f"./Controller/static/uploads/{data['cameraName']}/process/{data['date']}/"  # 프레임 경로
         sliceingCount = 20
     elif platform.system() == 'Linux':
         videoPath = f"./WebApp/Controller/static/video/{data['UserId']}/"
         videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '%H_%M_%S')}.mp4"
+        folder_dir = f"./WebApp/Controller/static/uploads/{data['cameraName']}/process/{data['date']}/"  # 프레임 경로
         sliceingCount = 27
 
     #비디오의 초기상태 Insert(신청자 정보, 진행상황=Progress 등)
@@ -27,8 +29,8 @@ def makeVideo(data):
 
     # 프레임 -> 영상전환 코드
     try:
-        #프레임 경로
-        folder_dir = f"./Controller/static/uploads/{data['cameraName']}/process/{data['date']}/"
+
+
 
         folder_paths = []
         mintime = 0

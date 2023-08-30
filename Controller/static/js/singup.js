@@ -12,17 +12,3 @@ window.addEventListener('load', () => {
       });
 }, false);
 
-var password = document.getElementById("password")
-    , passcheck = document.getElementById("passcheck");
-function validatePassword(){
-    if(password.value != passcheck.value) {
-        passcheck.setCustomValidity("패스워드가 일치하지 않습니다");
-    }
-    else {
-        passcheck.setCustomValidity('');
-    }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-
