@@ -1,12 +1,12 @@
+import sys
+#리눅스를 위한 경로추가
+sys.path.append('/home/hosting/WebApp')
 from flask import Blueprint
 from flask import render_template
 from flask import request
-from flask import session
 from flask import flash
 from flask import redirect
-from flask import url_for
 from Operation import Sign
-from flask import jsonify
 
 SignUpController = Blueprint("signupPage", __name__, url_prefix="/")
 

@@ -1,10 +1,10 @@
-from sys import platform
-
+import sys
+#리눅스를 위한 경로추가
+sys.path.append('/home/hosting/WebApp')
 from flask import Blueprint, jsonify, request
 from flask import render_template
 from flask import session
 from flask import redirect
-
 import pymysql as db
 from DAO import VideoDAO as video
 from DAO.DBConnection import dbInfo
