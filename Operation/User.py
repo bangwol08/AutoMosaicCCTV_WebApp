@@ -1,4 +1,8 @@
+import sys
+#리눅스를 위한 경로추가
+sys.path.append('/home/hosting/WebApp')
 from DAO import UserDAO
+
 def login(id,pw):
     try:
         row = UserDAO.SelectUser(id,pw)

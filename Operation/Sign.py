@@ -1,3 +1,6 @@
+import sys
+#리눅스를 위한 경로추가
+sys.path.append('/home/hosting/WebApp')
 from DAO import SignDAO
 
 def signUp(id, password, passcheck, name, age, gender, phonenum, email, address, aggrement):

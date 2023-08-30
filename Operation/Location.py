@@ -1,3 +1,6 @@
+import sys
+#리눅스를 위한 경로추가
+sys.path.append('/home/hosting/WebApp')
 from DAO import CameraDAO
 import decimal
 
