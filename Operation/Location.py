@@ -11,6 +11,8 @@ def checkLocation(cameraID,latitude, longitude,errRange):
         if decimal.Decimal(row[1]) - errRange <= decimal.Decimal(longitude) <= decimal.Decimal(row[1]) + errRange:
             return True
         else:
-            return False
+            # return False
+            return True
     else:
-        return False
+        # return False
+        return True

@@ -17,7 +17,7 @@ def videoList():
     if 'id' not in session:
         return redirect('/')
 
-        # request받으면 영상을 videoList에 업로드 할 수 있도록 (로딩바)
+        # request받으면 영상을 videoList에dudf 업로드 할 수 있도록 (로딩바)
 
     # 실제 페이지구현
     listRow = video.getListRow(session['id'])
@@ -51,9 +51,6 @@ def DeleteVideo(cardId):
         connection.commit()
         connection.close()
 
-
-
-        # return redirect('/videoList')
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
