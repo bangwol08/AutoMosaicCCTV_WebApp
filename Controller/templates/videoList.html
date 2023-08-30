@@ -22,8 +22,9 @@
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 
-    <!--vedio CDN-->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css"/>
+    <!-- VIDEO CDN-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel ="stylesheet" href ="{{ url_for('static', filename='css/styles.css') }}"/>
@@ -33,9 +34,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- 사용자CSS -->
-    <!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/videosort.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">#}
+
+    <!-- 사용자 JS -->
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/List.js') }}"></script>
+
 
     <!-- 요청부 -->
     <script>
@@ -59,56 +67,79 @@
             <h4 class="mb-3">Video List</h4>
             <hr>
 
-            <video id="player" style="position: static;" controls width="500">
-                <source src="{{url_for('static', filename='TEST1.mp4')}}" type="video/mp4">
-                <a href="{{url_for('static', filename='TEST1.mp4')}}">MP4</a>
-            </video>
-
-
             <!-- Video List -->
             <div class="mainclass">
                 {% for item in list %}
-                    {% if item[8] == "complete" %}
-                        <div style="text-align: center;">
-                            <video id="player" style="position: static;" controls width="500">
-                                <source src="{{url_for('static', filename=item[0])}}" type="video/mp4">
-                                <a href="{{url_for('static', filename=item[0])}}">MP4</a>
-                            </video>
-                        </div>
-                    {% else %}
-                        <div style="text-align: center; position: static;">
-                            <span class="back" style="overflow: hidden">
-                                <span>영</span>
-                                <span>상</span>
-                                <span>준</span>
-                                <span>비</span>
-                                <span>중</span>
-                            </span>
-                        </div>
-                    {% endif %}
-                    <div class="video-info">
-                        <!-- Display video information here -->
-                        <!-- You can access item[1], item[2], and so on for the video attributes -->
-
-                        <!-- Add a delete button for each video -->
+                    <div class="video-card card{{ loop.index }}">
                         {% if item[8] == "complete" %}
-                            <textarea class="text-area" data-video-id="{{ item[0] }}">영상정보 위치</textarea><br>
-                            <button class="delete-button" data-video-id="{{ item[0] }}">영상삭제</button>
+                            <div class="video-container">
+                                <video id="players{{ loop.index }}" style="position: static;" controls width="500">
+                                    <source src="{{url_for('static', filename=item[0])}}" type="video/mp4">
+                                    <a href="{{url_for('static', filename=item[0])}}">MP4</a>
+                                </video>
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                   <div class="card-header">
+                                       <h5 class="card-title">영상정보</h5>
+                                   </div>
+                                   <ul class="list-group list-group-flush">
+                                       <li class="list-group-item">
+                                            <p><strong>신청자:</strong> {{ item[1] }}</p>
+                                            <p><strong>카메라ID:</strong> {{ item[2] }}
+                                            </p><p><strong>신청 날짜:</strong> {{ item[3] }}</p>
+                                        </li>
+                                   </ul>
+                                </div>
+                                <div class="bt-group">
+                                    <button class="btn btn-primary">기한연장</button>
+                                    <button class="btn btn-primary2 btn-block delete-button" data-video-id="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">영상삭제</button>
+                                </div>
+
+                                <!-- 삭제 안내 -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">주의!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        정말로 삭제하시겠습니까?
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-primary delete-action">확인</button>
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div style="text-align: center; position: static;">
+                                <span class="back" style="overflow: hidden">
+                                    <span>영</span>
+                                    <span>상</span>
+                                    <span>준</span>
+                                    <span>비</span>
+                                    <span>중</span>
+                                </span>
+                            </div>
                         {% endif %}
-                    </div>
+                    </div><br>
                 {% endfor %}
             </div>
         </div>
     </div>
+
 </main>
-
-<!-- VIDEO CDN-->
-<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
-
-<!-- 사용자 JS -->
-<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
-<script src="{{ url_for('static', filename='js/video.js') }}"></script>
+<script>
+    // Popover
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('.video-info-button'))
+    popoverTriggerList.forEach(function (popoverTriggerEl) {
+        var popover = new bootstrap.Popover(popoverTriggerEl);
+    });
+</script>
 
 </body>
 </html>
