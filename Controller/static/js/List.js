@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // If successful, remove the video card from the DOM
+                //  비디오 카드를 DOM에서 제거
                 const videoCard = document.querySelector(`#card${cardId}`);
                 if (videoCard) {
                     videoCard.remove();

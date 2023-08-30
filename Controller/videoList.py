@@ -51,6 +51,9 @@ def DeleteVideo(cardId):
         connection.commit()
         connection.close()
 
+
+
+        # return redirect('/videoList')
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
