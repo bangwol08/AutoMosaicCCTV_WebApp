@@ -85,35 +85,6 @@ def UpdateVideo_Com(videoPath, videoName, sliceingCount, UserId):
         raise e
 
 
-def DeleteVideo(videoPath, videoName, sliceingCount, data):
-    try:
-        connection = db.connect(
-            host=dbInfo[0],
-            user=dbInfo[1],
-            port=dbInfo[2],
-            password=dbInfo[3],
-            database=dbInfo[4]
-        )
-        # 커서 생성
-        cursor = connection.cursor()
-        sql = "DELETE FROM videoList (video_name, user_id, camera_id, start_day, wantTime_s, wantTime_e, part, reason, progress) values(%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-
-        # 운영체제 감지 후 상황에 맞는 파일기본정보 및 처리상태 insert
-        if platform.system() == 'Windows':
-            cursor.execute(sql, (
-            f'{videoPath[sliceingCount:]}{videoName}', data['UserId'], data['cameraName'], data['startDay'], data['wantTime_s'], data['wantTime_e'], data['part'],
-            data['reason'], data['progress']))
-        elif platform.system() == 'Linux':
-            cursor.execute(sql, (
-            f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', data['UserId'], data['cameraName'], data['startDay'], data['wantTime_s'], data['wantTime_e'], data['part'],
-            data['reason'], data['progress']))
-
-        connection.commit()
-        connection.close()
-
-    except Exception as e:
-        connection.close()
-        raise e
 
 # videoList
 def getListRow(id):

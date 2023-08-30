@@ -70,7 +70,7 @@
             <!-- Video List -->
             <div class="mainclass">
                 {% for item in list %}
-                    <div class="video-card card{{ loop.index }}">
+                    <div class="video-card" id="{{ loop.index }}">
                         {% if item[8] == "complete" %}
                             <div class="video-container">
                                 <video id="players{{ loop.index }}" style="position: static;" controls width="500">
@@ -93,22 +93,22 @@
                                 </div>
                                 <div class="bt-group">
                                     <button class="btn btn-primary">기한연장</button>
-                                    <button class="btn btn-primary2 btn-block delete-button" data-video-id="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">영상삭제</button>
+                                    <button class="btn btn-primary2 btn-block delete-action" data-card-id="{{ loop.index }}" id="deleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#confirmModal">영상삭제</button>
                                 </div>
 
                                 <!-- 삭제 안내 -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">주의!</h1>
+                                        <h1 class="modal-title fs-5" id="confirmModalLabel">주의!</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
                                         정말로 삭제하시겠습니까?
                                       </div>
                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-primary delete-action">확인</button>
+                                          <button type="button" id="confirmDeleteButton" class="btn btn-primary">확인</button>
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                       </div>
                                     </div>

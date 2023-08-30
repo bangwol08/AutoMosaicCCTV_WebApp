@@ -1,12 +1,13 @@
-from flask import Blueprint
+from sys import platform
+
+from flask import Blueprint, jsonify, request
 from flask import render_template
 from flask import session
 from flask import redirect
 
 import pymysql as db
-from DAO import DBConnection
 from DAO import VideoDAO as video
-
+from DAO.DBConnection import dbInfo
 
 videoListController = Blueprint("videoListPage", __name__, url_prefix="/")
 
@@ -23,3 +24,33 @@ def videoList():
     list = video.getList(session['id'])
 
     return render_template('videoList.html', listRow=listRow[0], list=list)
+
+@videoListController.route('/DeleteVideo/<int:cardId>', methods=['POST'])
+def DeleteVideo(cardId):
+    try:
+        data = request.get_json()
+        if not data or 'videoName' not in data:
+            return jsonify({"success": False, "error": "비디오 이름을 찾을 수 없습니다."})
+
+        videoName = data['videoName']
+
+        connection = db.connect(
+            host=dbInfo[0],
+            user=dbInfo[1],
+            port=dbInfo[2],
+            password=dbInfo[3],
+            database=dbInfo[4]
+        )
+
+        # 커서 생성
+        cursor = connection.cursor()
+
+        # video_name을 기준으로 비디오 삭제
+        sql_delete = "DELETE FROM videoList WHERE video_name = %s"
+        cursor.execute(sql_delete, (videoName,))
+        connection.commit()
+        connection.close()
+
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)})
