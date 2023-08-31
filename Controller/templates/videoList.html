@@ -133,5 +133,24 @@
     </div>
 
 </main>
+<style>
+    @media (max-width: 1425px) {
+        .mainclass {
+            justify-content: center;
+        }
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 확인 버튼을 선택합니다.
+        var confirmButton = document.getElementById("confirmDeleteButton");
+
+        // 확인 버튼에 클릭 이벤트를 추가합니다.
+        confirmButton.addEventListener("click", function () {
+            // 페이지를 리프레시합니다.
+            location.reload();
+        });
+    });
+</script>    
 </body>
 </html>
