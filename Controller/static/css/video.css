@@ -122,6 +122,7 @@ body{
         align-items: center;
         flex-direction: column;
     }
+
 }
 
 @media (min-width: 1024px) {
