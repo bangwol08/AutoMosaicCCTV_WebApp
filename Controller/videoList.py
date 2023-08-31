@@ -1,3 +1,4 @@
+import platform
 import sys
 #리눅스를 위한 경로추가
 sys.path.append('/home/hosting/WebApp')
@@ -56,7 +57,7 @@ def DeleteVideo(cardId):
         return jsonify({"success": False, "error": str(e)})
 
 @videoListController.route('/UpdateDeleteVideo/<int:cardId>', methods=['POST'])
-def UpdateDeleteVideo(cardId):
+def UpdateDeleteVideo(cardId, videoPath, videoName, sliceingCount, UserId):
     try:
         data = request.get_json()
         if not data or 'videoName' not in data:
@@ -75,9 +76,14 @@ def UpdateDeleteVideo(cardId):
         # 커서 생성
         cursor = connection.cursor()
 
-        # video_name을 기준으로 비디오 삭제
-        sql_delete = "DELETE FROM videoList WHERE video_name = %s"
-        cursor.execute(sql_delete, (videoName,))
+        # video_name을 기준으로 progress 업데이트
+        sql = "UPDATE videoList SET progress=%s WHERE video_name=%s AND user_id=%s"
+
+        # 운영체제 감지 후 그에 맞는 쿼리 문 실행
+        if platform.system() == 'Windows':
+            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}', UserId))
+        elif platform.system() == 'Linux':
+            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', UserId))
         connection.commit()
         connection.close()
 

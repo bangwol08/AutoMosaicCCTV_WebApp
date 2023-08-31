@@ -92,7 +92,7 @@
                                    </ul>
                                 </div>
                                 <div class="bt-group">
-                                    <button class="btn btn-primary">파일삭제Test</button>
+                                    <button class="btn btn-primary btn-block delete-action" data-card-id="{{ loop.index }}" id="ddeleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#dconfirmModal">파일삭제Test</button>
                                     <button class="btn btn-primary2 btn-block delete-action" data-card-id="{{ loop.index }}" id="deleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#confirmModal">영상삭제</button>
                                 </div>
 
