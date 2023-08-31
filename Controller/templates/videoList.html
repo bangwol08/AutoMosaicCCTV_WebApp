@@ -92,7 +92,6 @@
                                    </ul>
                                 </div>
                                 <div class="bt-group">
-{#                                    <button class="btn btn-primary btn-block delete-action" data-card-id="{{ loop.index }}" id="ddeleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#dconfirmModal">파일삭제Test</button>#}
                                     <button class="btn btn-primary2 btn-block delete-action" data-card-id="{{ loop.index }}" id="deleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#confirmModal">영상삭제</button>
                                 </div>
 
@@ -114,24 +113,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                <!-- 삭제 안내 - 파일 -->
-{#                                <div class="modal fade" id="dconfirmModal" tabindex="-1" aria-labelledby="dconfirmModalLabel" aria-hidden="true">#}
-{#                                  <div class="modal-dialog">#}
-{#                                    <div class="modal-content">#}
-{#                                      <div class="modal-header">#}
-{#                                        <h1 class="modal-title fs-5" id="dconfirmModalLabel">주의!</h1>#}
-{#                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
-{#                                      </div>#}
-{#                                      <div class="modal-body">#}
-{#                                        정말로 삭제하시겠습니까?#}
-{#                                      </div>#}
-{#                                      <div class="modal-footer">#}
-{#                                          <button type="button" id="dconfirmDeleteButton" class="btn btn-primary" data-bs-dismiss="modal">확인</button>#}
-{#                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>#}
-{#                                      </div>#}
-{#                                    </div>#}
-{#                                  </div>#}
-{#                                </div>#}
+
                             </div>
                         {% else %}
                             <div style="text-align: center; position: static;">
