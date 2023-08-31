@@ -78,20 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 유효성 검사 - Check
-var part = document.getElementsByName('part');
+var selectElement = document.getElementById('gender');
 var terms = document.getElementById('terms');
 
-for (var i = 0; i < part.length; i++) {
-    part[i].addEventListener('change', function() {
-        for (var j = 0; j < part.length; j++) {
-            if (part[j].checked) {
-                part[j].classList.add('is-valid');
-            } else {
-                part[j].classList.remove('is-valid');
-            }
-        }
-    });
-}
+selectElement.addEventListener('change', function() {
+    if (selectElement.value !== '') {
+        selectElement.classList.add('is-valid');
+    } else {
+        selectElement.classList.remove('is-valid');
+        selectElement.classList.add('is-invalid');
+    }
+});
 
 terms.addEventListener('click', function() {
     terms.classList.remove('is-valid');
@@ -134,7 +131,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
         }
     }
 
-    if (!partSelected) {
+    var selectElement = document.getElementById('gender');
+    if (selectElement.value === '') {
         messages.push('열람 사유를 선택해주세요.');
     }
 
