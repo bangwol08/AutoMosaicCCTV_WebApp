@@ -76,22 +76,3 @@ def makeVideo(data):
         #에러시 err상태 업데이트 및 out1 release
         VideoDAO.UpdateVideo_Err(videoPath, videoName, sliceingCount, data['UserId'])
         out1.release()
-
-def deleteVideoFile(data):
-    if platform.system() == 'Windows':
-        videoPath = f"./Controller/static/video/{data['UserId']}/"
-        videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '% H_%M_%S')}.mp4"
-    elif platform.system() == 'Linux':
-        videoPath = f"./WebApp/Controller/static/video/{data['UserId']}/"
-        videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '% H_%M_%S')}.mp4"
-
-    videoFilePath = os.path.join(videoPath, videoName)
-
-    try:
-        if os.path.exists(videoFilePath):
-            os.remove(videoFilePath)
-            print('비디오 파일 삭제 성공')
-        else:
-            print('삭제할 비디오 파일이 존재하지 않습니다.')
-    except Exception as e:
-        print('비디오 파일 삭제 실패:', e)
