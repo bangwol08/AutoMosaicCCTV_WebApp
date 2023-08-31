@@ -49,6 +49,9 @@
             display: inline-block;
         }
 
+        .form-select-sm {
+            width: 105px;
+        }
     </style>
 
 </head>
@@ -129,9 +132,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="terms" class="form-check-label form-check-inline "><strong>열람 사유 &nbsp; &nbsp;</strong></label>
-                                <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <label for="terms" class="form-check-label form-check-inline m-0"><strong>열람 사유 &nbsp; &nbsp;</strong></label>
+                                    <select class="form-select form-select-sm" size="1" id="gender" name = "part" required>
+                                        <option selected disabled value="">목적</option>
+                                        <option value="Personal">개인</option>
+                                        <option value="Public">공무</option>
+                                    </select>
+                                </div>
                                 <textarea name="partText" id="partText" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
