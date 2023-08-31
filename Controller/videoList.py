@@ -46,8 +46,8 @@ def DeleteVideo(cardId):
         cursor = connection.cursor()
 
         # video_name을 기준으로 비디오 삭제
-        sql_delete = "DELETE FROM videoList WHERE video_name = %s"
-        cursor.execute(sql_delete, (videoName,))
+        sql = "UPDATE videoList SET progress='delete' WHERE video_name = %s"
+        cursor.execute(sql, (videoName,))
         connection.commit()
         connection.close()
 
