@@ -36,7 +36,7 @@ def videoRequestPage():
     # 실제 페이지구현
     if request.method == 'POST':
         #사용자의 위치정보수집
-        if(request.form['location'] == None):
+        if(request.form['location'] == ''):
             latitude, longitude = 0, 0
         else:
             latitude, longitude = request.form['location'].split(',')
