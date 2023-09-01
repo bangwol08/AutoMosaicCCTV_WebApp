@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 유효성 검사 - Check
-var selectElement = document.getElementById('gender');
+var selectElement = document.getElementById('part');
 var terms = document.getElementById('terms');
 
 selectElement.addEventListener('change', function() {
@@ -91,7 +91,7 @@ selectElement.addEventListener('change', function() {
 });
 
 terms.addEventListener('click', function() {
-    terms.classList.remove('is-valid');
+    terms.classList.add('is-valid');
 });
 
 terms.addEventListener('change', function() {
@@ -110,8 +110,13 @@ document.getElementById('form').addEventListener('submit', function(event) {
     var startTimeValue = wantTime_s.value;
     var endTimeValue = wantTime_e.value;
     var termsChecked = terms.checked;
+    var getLocationBtn = document.getElementById('getLocationBtn');
 
     var messages = [];
+
+    if (!getLocationBtn.classList.contains('btn-success')) {
+        messages.push('위치정보 수집에 동의해주세요.');
+    }
 
     if (!startTimeValue && !endTimeValue) {
         messages.push('시작 시간과 종료 시간을 입력해주세요.');
@@ -123,15 +128,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
         messages.push('시작 시간은 종료 시간보다 빨라야 합니다.');
     }
 
-    var partSelected = false;
-    for (var i = 0; i < part.length; i++) {
-        if (part[i].checked) {
-            partSelected = true;
-            break;
-        }
-    }
 
-    var selectElement = document.getElementById('gender');
+    var selectElement = document.getElementById('part');
     if (selectElement.value === '') {
         messages.push('열람 사유를 선택해주세요.');
     }
