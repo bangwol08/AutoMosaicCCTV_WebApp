@@ -78,21 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 유효성 검사 - Check
-// var part = document.getElementsByName('part');
 var selectElement = document.getElementById('gender');
 var terms = document.getElementById('terms');
 
-// for (var i = 0; i < part.length; i++) {
-//     part[i].addEventListener('change', function() {
-//         for (var j = 0; j < part.length; j++) {
-//             if (part[j].checked) {
-//                 part[j].classList.add('is-valid');
-//             } else {
-//                 part[j].classList.remove('is-valid');
-//             }
-//         }
-//     });
-// }
 selectElement.addEventListener('change', function() {
     if (selectElement.value !== '') {
         selectElement.classList.add('is-valid');
@@ -133,6 +121,14 @@ document.getElementById('form').addEventListener('submit', function(event) {
         messages.push('종료 시간을 입력해주세요.');
     } else if (startTimeValue >= endTimeValue) {
         messages.push('시작 시간은 종료 시간보다 빨라야 합니다.');
+    }
+
+    var partSelected = false;
+    for (var i = 0; i < part.length; i++) {
+        if (part[i].checked) {
+            partSelected = true;
+            break;
+        }
     }
 
     var selectElement = document.getElementById('gender');
