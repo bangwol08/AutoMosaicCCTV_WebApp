@@ -68,7 +68,7 @@
             <hr>
 
             <!-- Video List -->
-            <div class="mainclass" id="mainclass">
+            <div id="mainclass" class="mainclass">
                 {% for item in list %}
                     <div class="video-card" id="{{ loop.index }}">
                         {% if item[8] == "complete" %}
@@ -95,7 +95,7 @@
                                     <button class="btn btn-primary2 btn-block delete-action" data-card-id="{{ loop.index }}" id="deleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#confirmModal">영상삭제</button>
                                 </div>
 
-                                <!-- 삭제 안내 - DB -->
+                                <!-- 삭제 안내 -->
                                 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
@@ -113,9 +113,8 @@
                                     </div>
                                   </div>
                                 </div>
-
                             </div>
-                        {% else %}
+                        {% elif item[8] == "in progress" %}
                             <div style="text-align: center; position: static;">
                                 <span class="back" style="overflow: hidden">
                                     <span>영</span>
@@ -133,7 +132,6 @@
     </div>
 
 </main>
-</body>
 <style>
     @media (max-width: 1425px) {
         .mainclass {
@@ -153,5 +151,5 @@
         });
     });
 </script>
-
+</body>
 </html>

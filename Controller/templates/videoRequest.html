@@ -52,8 +52,6 @@
         .form-select-sm {
             width: 105px;
         }
-
-
     </style>
 
 </head>
@@ -136,9 +134,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <label for="terms" class="form-check-label form-check-inline m-0"><strong>열람 사유 &nbsp; &nbsp;</strong></label>
-    {#                                <input class="form-check-input" id="Personal" type="radio" name="part" value="Personal"> 개인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
-    {#                                <input class="form-check-input" id="Public" type="radio" name="part" value="Public"> 공무#}
-                                    <select class="form-select form-select-sm" size="1" id="gender" name = "part" required>
+                                    <select class="form-select form-select-sm" size="1" id="part" name = "part" required>
                                         <option selected disabled value="">목적</option>
                                         <option value="Personal">개인</option>
                                         <option value="Public">공무</option>
@@ -160,7 +156,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="terms" class="form-check-label"><a data-toggle="modal" id="myLink"><strong>법적 고지 및 약관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></label>
+                            <label for="terms" class="form-check-label"><a data-toggle="modal"  id="myLink"><strong>법적 고지 및 약관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></label>
                             <input id="terms" class="form-check-input" type="radio" name="terms" value="O" required>&nbsp;동의함<br>
                         </div>
                         <hr>

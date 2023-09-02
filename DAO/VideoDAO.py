@@ -118,7 +118,7 @@ def getList(id):
             database=dbInfo[4]
         )
         cursor = connection.cursor()
-        sql = "SELECT * FROM videoList WHERE user_id=%s"
+        sql = "SELECT * FROM videoList WHERE user_id=%s AND progress != 'delete'"
         cursor.execute(sql, (id))
         row = cursor.fetchall()
         connection.close()

@@ -36,7 +36,10 @@ def videoRequestPage():
     # 실제 페이지구현
     if request.method == 'POST':
         #사용자의 위치정보수집
-        latitude, longitude = request.form['location'].split(',')
+        if(request.form['location'] == ''):
+            latitude, longitude = 0, 0
+        else:
+            latitude, longitude = request.form['location'].split(',')
 
         #위치정보가 카메라 부근인지 확인
         LocFlag = Location.checkLocation(request.form['cameraName'], latitude, longitude,errRange=999999)

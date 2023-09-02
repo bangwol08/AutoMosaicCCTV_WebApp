@@ -3,6 +3,7 @@ from . import Login, Video
 from . import Index
 from . import videoList
 from . import signUp
+from . import Uplodad
 
 app = Flask(__name__)
 
@@ -21,5 +22,5 @@ app.register_blueprint(videoList.videoListController)
 # QR 및 리퀘스트 기능 관련 페이지
 app.register_blueprint(Video.videoController)
 
-
-
+# 프레임업로드
+app.register_blueprint(Uplodad.upload)

@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 유효성 검사 - Check
-var selectElement = document.getElementById('part');
+var part = document.getElementsByName('part');
 var terms = document.getElementById('terms');
 
 selectElement.addEventListener('change', function() {
@@ -91,7 +91,7 @@ selectElement.addEventListener('change', function() {
 });
 
 terms.addEventListener('click', function() {
-    terms.classList.add('is-valid');
+    terms.classList.remove('is-valid');
 });
 
 terms.addEventListener('change', function() {
