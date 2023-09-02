@@ -39,10 +39,14 @@ def deleteUpdate():
         if platform.system() == 'Windows':
             videoPath = f"./Controller/static/video/{data['UserId']}/"
             videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '%H_%M_%S')}.mp4"
-
+            sliceingCount = 20
         elif platform.system() == 'Linux':
             videoPath = f"./WebApp/Controller/static/video/{data['UserId']}/"
             videoName = f"{data['cameraName']}_{datetime.strftime(data['start_datetime_obj'], '%H_%M_%S')}_{datetime.strftime(data['end_datetime_obj'], '%H_%M_%S')}.mp4"
+            sliceingCount = 27
+
+        # 비디오의 초기상태 Insert(신청자 정보, 진행상황=Progress 등)
+        VideoDAO.InsertVideo(videoPath, videoName, sliceingCount, data)
 
         fullVideoPath = os.path.join(videoPath, videoName)
 

@@ -84,60 +84,6 @@ def UpdateVideo_Com(videoPath, videoName, sliceingCount, UserId):
         connection.close()
         raise e
 
-def UpdateVideo_Del(videoPath, videoName, sliceingCount, UserId):
-    try:
-        connection = db.connect(
-            host=dbInfo[0],
-            user=dbInfo[1],
-            port=dbInfo[2],
-            password=dbInfo[3],
-            database=dbInfo[4]
-        )
-
-        # 커서 생성
-        cursor = connection.cursor()
-        # update문 작성
-        sql = "UPDATE videoList SET progress=%s WHERE video_name=%s AND user_id=%s"
-        cursor.execute(sql, ('deleted', videoName, UserId))
-
-        # 운영체제 감지 후 그에 맞는 쿼리 문 실행
-        if platform.system() == 'Windows':
-            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}', UserId))
-        elif platform.system() == 'Linux':
-            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', UserId))
-
-        connection.commit()
-        connection.close()
-    except Exception as e:
-        connection.close()
-        raise e
-
-# def UpdateVideo_Del(videoPath, videoName, sliceingCount, UserId):
-#     try:
-#         connection = db.connect(
-#             host=dbInfo[0],
-#             user=dbInfo[1],
-#             port=dbInfo[2],
-#             password=dbInfo[3],
-#             database=dbInfo[4]
-#         )
-#         # 커서 생성
-#         cursor = connection.cursor()
-#         # update문 작성
-#         sql = "UPDATE videoList SET progress=%s WHERE video_name=%s AND user_id=%s"
-#
-#         # 운영체제 감지 후 그에 맞는 쿼리 문 실행
-#         if platform.system() == 'Windows':
-#             cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}', UserId))
-#         elif platform.system() == 'Linux':
-#             cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', UserId))
-#
-#         connection.commit()
-#         connection.close()
-#     except Exception as e:
-#         connection.close()
-#         raise e
-
 
 # videoList
 def getListRow(id):
