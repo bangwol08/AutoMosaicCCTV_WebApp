@@ -51,7 +51,7 @@ def DeleteVideo(cardId):
         cursor.execute(sql, (videoName,))
         # progress='delete'인 row를 deletedVidoe 테이블로 이동
         sql = "INSERT INTO deletedVideo SELECT * FROM videoList WHERE progress='delete'"
-        cursor.execute(sql, (progress,))
+        # cursor.execute(sql, (progress,))
         connection.commit()
         connection.close()
 
