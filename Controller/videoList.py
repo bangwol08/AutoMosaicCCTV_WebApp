@@ -1,4 +1,3 @@
-import platform
 import sys
 #리눅스를 위한 경로추가
 sys.path.append('/home/hosting/WebApp')
@@ -18,7 +17,7 @@ def videoList():
     if 'id' not in session:
         return redirect('/')
 
-        # request받으면 영상을 videoList에dudf 업로드 할 수 있도록 (로딩바)
+        # request받으면 영상을 videoList에 업로드 할 수 있도록 (로딩바)
 
     # 실제 페이지구현
     listRow = video.getListRow(session['id'])
@@ -35,6 +34,7 @@ def DeleteVideo(cardId):
 
         videoName = data['videoName']
 
+
         connection = db.connect(
             host=dbInfo[0],
             user=dbInfo[1],
@@ -49,44 +49,15 @@ def DeleteVideo(cardId):
         # video_name을 기준으로 비디오 삭제
         sql = "UPDATE videoList SET progress='delete' WHERE video_name = %s"
         cursor.execute(sql, (videoName,))
+        # progress='delete'인 row를 deletedVidoe 테이블로 이동
+        sql = "INSERT INTO deletedVideo SELECT * FROM videoList WHERE progress='delete'"
+        cursor.execute(sql, (progress,))
         connection.commit()
         connection.close()
 
-        return jsonify({"success": True})
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)})
 
-@videoListController.route('/UpdateDeleteVideo/<int:cardId>', methods=['POST'])
-def UpdateDeleteVideo(cardId, videoPath, videoName, sliceingCount, UserId):
-    try:
-        data = request.get_json()
-        if not data or 'videoName' not in data:
-            return jsonify({"success": False, "error": "비디오 이름을 찾을 수 없습니다."})
 
-        videoName = data['videoName']
-
-        connection = db.connect(
-            host=dbInfo[0],
-            user=dbInfo[1],
-            port=dbInfo[2],
-            password=dbInfo[3],
-            database=dbInfo[4]
-        )
-
-        # 커서 생성
-        cursor = connection.cursor()
-
-        # video_name을 기준으로 progress 업데이트
-        sql = "UPDATE videoList SET progress=%s WHERE video_name=%s AND user_id=%s"
-
-        # 운영체제 감지 후 그에 맞는 쿼리 문 실행
-        if platform.system() == 'Windows':
-            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}', UserId))
-        elif platform.system() == 'Linux':
-            cursor.execute(sql, ('deleted', f'{videoPath[sliceingCount:]}{videoName}_h264.mp4', UserId))
-        connection.commit()
-        connection.close()
-
+        # return redirect('/videoList')
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
