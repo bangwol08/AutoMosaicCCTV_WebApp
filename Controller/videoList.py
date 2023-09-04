@@ -48,12 +48,20 @@ def DeleteVideo(cardId):
         # video_name을 기준으로 비디오 삭제
         sql = "UPDATE videoList SET progress='delete' WHERE video_name = %s"
         cursor.execute(sql, (videoName,))
+
+        # progress='delete'인 데이터를 deletedVideo 테이블로 이동
+        sql = "INSERT INTO deletedVideo SELECT * FROM videoList WHERE progress='delete'"
+        cursor.execute(sql)
+
+        # 기존 테이블에 있는 데이터 제거
+        sql = "DELETE FROM videoList WHERE progress='delete'"
+        cursor.execute(sql)
+
         connection.commit()
         connection.close()
 
 
 
-        # return redirect('/videoList')
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
