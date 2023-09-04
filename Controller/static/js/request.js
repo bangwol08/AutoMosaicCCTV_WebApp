@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         minuteIncrement: 1,
         position: "custom",
         appendTo: document.querySelector(".time-container-1"),
-        inline: true,
+        inline: true, //false true
         onChange: validateTime
     });
 

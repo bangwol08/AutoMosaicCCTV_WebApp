@@ -123,6 +123,10 @@ body{
         flex-direction: column;
     }
 
+    .flatpickr {
+        width: 100%; /* 전체 너비 채우기 */
+    }
+
 }
 
 @media (min-width: 1024px) {
@@ -134,8 +138,4 @@ body{
 .video-card .video-info {
   margin: 10px 0;
 }
-
-
-
-
 

@@ -52,6 +52,12 @@
         .form-select-sm {
             width: 105px;
         }
+
+        .flatpickr-calendar {
+            width: 100% !important;
+        }
+
+
     </style>
 
 </head>
@@ -140,15 +146,15 @@
                                         <option value="Public">공무</option>
                                     </select>
                                 </div>
-                                <textarea name="partText" id="partText" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
+                                <textarea name="partText" id="partText" style="width: 100%; max-width: 100%;" rows="5" placeholder="간단히 적어주세요."></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
                                 <div class="time-container-1">
-                                    <input type="text" id="wantTime_s" name="wantTime_s" class="form-control" placeholder="시작시간 입력" required>
+                                    <input type="text" id="wantTime_s" name="wantTime_s" class="form-control" placeholder="시작시간 입력" data-input required>
                                 </div>
                                 <div class="time-container-2">
-                                    <input type="text" id="wantTime_e" name="wantTime_e" class="form-control" placeholder="종료시간 입력" required>
+                                    <input type="text" id="wantTime_e" name="wantTime_e" class="form-control" placeholder="종료시간 입력" data-input required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
                                     ex) 영상의 1시간 지점부터 2시간 지점까지
