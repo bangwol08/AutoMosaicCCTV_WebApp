@@ -189,4 +189,4 @@ pip-selfcheck.json
 
 *.iml
 *.pt
-DBconnectio.py
+DBConnection.py
