@@ -115,9 +115,11 @@ document.getElementById('form').addEventListener('submit', function(event) {
 
     var messages = [];
 
+    /*
     if (!getLocationBtn.classList.contains('btn-success')) {
         messages.push('위치정보 수집에 동의해주세요.');
     }
+    */
 
     if (!startTimeValue && !endTimeValue) {
         messages.push('시작 시간과 종료 시간을 입력해주세요.');
