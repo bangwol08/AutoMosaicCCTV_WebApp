@@ -1,4 +1,7 @@
 import sys
+
+import requests
+
 #리눅스를 위한 경로추가
 sys.path.append('/home/hosting/WebApp')
 from flask import Blueprint, jsonify, request
@@ -8,8 +11,12 @@ from flask import redirect
 import pymysql as db
 from DAO import VideoDAO as video
 from DAO.DBConnection import dbInfo
+from flask_cors import CORS
 
 videoListController = Blueprint("videoListPage", __name__, url_prefix="/")
+# CORS 설정
+CORS(videoListController)
+
 
 @videoListController.route('/videoList')
 def videoList():
@@ -34,7 +41,6 @@ def DeleteVideo(cardId):
 
         videoName = data['videoName']
 
-
         connection = db.connect(
             host=dbInfo[0],
             user=dbInfo[1],
@@ -49,15 +55,22 @@ def DeleteVideo(cardId):
         # video_name을 기준으로 비디오 삭제
         sql = "UPDATE videoList SET progress='delete' WHERE video_name = %s"
         cursor.execute(sql, (videoName,))
-        # progress='delete'인 row를 deletedVidoe 테이블로 이동
+
+        # progress='delete'인 데이터를 deletedVideo 테이블로 이동
         sql = "INSERT INTO deletedVideo SELECT * FROM videoList WHERE progress='delete'"
-        # cursor.execute(sql, (progress,))
+        cursor.execute(sql)
+
+        # 기존 테이블에 있는 데이터 제거
+        sql = "DELETE FROM videoList WHERE progress='delete'"
+        cursor.execute(sql)
+
         connection.commit()
         connection.close()
 
 
 
-        # return redirect('/videoList')
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
+
+

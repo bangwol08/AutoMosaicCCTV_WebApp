@@ -123,6 +123,10 @@ body{
         flex-direction: column;
     }
 
+    .flatpickr {
+        width: 100%; /* 전체 너비 채우기 */
+    }
+
 }
 
 @media (min-width: 1024px) {
@@ -135,6 +139,7 @@ body{
   margin: 10px 0;
 }
 
+/* 이거 주석처리해야할? */
 @media (max-width: 1425px) {
         .mainclass {
             justify-content: center;

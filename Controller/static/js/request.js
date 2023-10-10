@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         minuteIncrement: 1,
         position: "custom",
         appendTo: document.querySelector(".time-container-1"),
-        inline: true,
+        inline: true, //false true
         onChange: validateTime
     });
 
@@ -111,12 +111,15 @@ document.getElementById('form').addEventListener('submit', function(event) {
     var endTimeValue = wantTime_e.value;
     var termsChecked = terms.checked;
     var getLocationBtn = document.getElementById('getLocationBtn');
+    var selectElement = document.getElementById('part');
 
     var messages = [];
 
+    /*
     if (!getLocationBtn.classList.contains('btn-success')) {
         messages.push('위치정보 수집에 동의해주세요.');
     }
+    */
 
     if (!startTimeValue && !endTimeValue) {
         messages.push('시작 시간과 종료 시간을 입력해주세요.');
@@ -129,7 +132,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     }
 
 
-    var selectElement = document.getElementById('part');
+
     if (selectElement.value === '') {
         messages.push('열람 사유를 선택해주세요.');
     }
@@ -143,5 +146,4 @@ document.getElementById('form').addEventListener('submit', function(event) {
         event.preventDefault();
     }
 });
-
 

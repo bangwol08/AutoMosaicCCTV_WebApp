@@ -1,26 +1,26 @@
-import Plyr from 'plyr';
-const players = Plyr.setup('#players');
+// import Plyr from 'plyr';
+// const player = Plyr.setup('#players');
 
-// Add an event listener to the delete buttons
-// document.querySelectorAll('.delete-button').forEach(button => {
-//     button.addEventListener('click', function() {
-//         const videoId = button.getAttribute('data-video-id');
-//         // Send an AJAX request to the backend to delete the video
-//         fetch(`/delete_video/${videoId}`, { method: 'POST' })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data.success) {
-//                     // Video was deleted successfully, remove the corresponding video card
-//                     const videoCard = button.closest('.video-card');
-//                     if (videoCard) {
-//                         videoCard.remove();
-//                     }
-//                 } else {
-//                     // Display an error message or handle failure
-//                 }
-//             })
-//             .catch(error => {
-//                 // Handle errors
-//             });
-//     });
-// });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // 모든 비디오 요소에 대해 Plyr 초기화
+    const videoElements = document.querySelectorAll('.video-container video');
+    videoElements.forEach(function (videoElement) {
+        var player = new Plyr(videoElements, {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+            invertTime: false,
+            keyboard: {
+                focused: false,
+                global: false
+            },
+            listeners: {
+                // 리스너로 seek 안되게 처리할려면 요렇게
+                seek: function customSeekBehavior(e) {
+                    //e.preventDefault();
+                    //alert('변경 불가능');
+                    //return false;
+                }
+            }
+        });
+    });
+});

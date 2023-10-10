@@ -41,7 +41,7 @@
 
     <!-- 사용자 JS -->
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{#    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>#}
     <script src="{{ url_for('static', filename='js/List.js') }}"></script>
 
 
@@ -92,7 +92,6 @@
                                    </ul>
                                 </div>
                                 <div class="bt-group">
-                                    <button class="btn btn-primary">기한연장</button>
                                     <button class="btn btn-primary2 btn-block delete-action" data-card-id="{{ loop.index }}" id="deleteBtn{{ loop.index }}" data-video-name="{{ item[0] }}" data-bs-toggle="modal" data-bs-target="#confirmModal">영상삭제</button>
                                 </div>
 

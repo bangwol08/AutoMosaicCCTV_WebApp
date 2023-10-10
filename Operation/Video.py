@@ -95,7 +95,7 @@ def makeVideo(data):
         elif platform.system() == 'Linux':
             fourcc2 = cv2.VideoWriter_fourcc(*'mp4v')
 
-        out1 = cv2.VideoWriter(f'{videoPath}{videoName}', fourcc2, 8.0, (640, 480))
+        out1 = cv2.VideoWriter(f'{videoPath}{videoName}', fourcc2, 30.0, (640, 480))
 
         # 각 폴더 내의 모든 이미지를 읽어와서 비디오에 추가
         for folder in folder_paths:

@@ -17,13 +17,3 @@
         console.log("Geolocation is not available.");
       }
     }
-
-    // // 내 위치 가져오기
-    // // Assuming you have an input element with an id of "location"
-    // const locationInput = document.getElementById("location");
-    //
-    // // To get the value of the input element
-    // const locationValue = locationInput.value;
-    //
-    // // Now, locationValue contains the value of the input element
-    // console.log(locationValue);

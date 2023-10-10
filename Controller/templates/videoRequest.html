@@ -52,6 +52,12 @@
         .form-select-sm {
             width: 105px;
         }
+
+        .flatpickr-calendar {
+            width: 100% !important;
+        }
+
+
     </style>
 
 </head>
@@ -92,7 +98,7 @@
                         <p>- 다만, <strong style="color:Tomato;">범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우</strong> 또는 <strong style="color:Tomato;">법원의 재판업무 수행을 위하여 필요한 경우</strong>에는 이를 열람, 제공할 수 있습니다.<br><br>
                         <h5>2. 약관</h5><br>
                         <p>- 본 사용자는 해당 법적 고지를 이해하고 위반하지 않겠음을 동의해야 합니다. <br><br>
-                        <h5>3. 테스트</h5>
+{#                        <h5>3. 테스트</h5>#}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="document.getElementById('terms').checked = true">확인</button>
@@ -111,8 +117,10 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cameraName"><strong>카메라ID 및 위치</strong></label>
-                                <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="{{ cameraName }}" readonly required>
+                                <a href="cameraMap.html" class="btn btn-primary">맵 보기</a>
+{#                                <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="{{ cameraName }}" readonly required>#}
                                 &nbsp;
+                                <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="esqure_01" readonly required> <!-- 로컬용  -->
                                 <button class="btn btn-primary btn-lg btn-block" name = "getLocationBtn" id="getLocationBtn" type="button" onclick="getLocation()">위치정보수집동의</button>
                                 <input type="hidden" id="location" name="location" placeholder="Location will appear here" readonly>
 
@@ -133,22 +141,22 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <label for="terms" class="form-check-label form-check-inline m-0"><strong>열람 사유 &nbsp; &nbsp;</strong></label>
+                                    <label for="part" class="form-check-label form-check-inline m-0"><strong>열람 사유 &nbsp; &nbsp;</strong></label>
                                     <select class="form-select form-select-sm" size="1" id="part" name = "part" required>
                                         <option selected disabled value="">목적</option>
                                         <option value="Personal">개인</option>
                                         <option value="Public">공무</option>
                                     </select>
                                 </div>
-                                <textarea name="partText" id="partText" cols="38" rows="5" placeholder="간단히 적어주세요."></textarea>
+                                <textarea name="partText" id="partText" style="width: 100%; max-width: 100%;" rows="5" placeholder="간단히 적어주세요."></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="wantTime" class="form-check-label"><strong>원하는 시간</strong></label>
                                 <div class="time-container-1">
-                                    <input type="text" id="wantTime_s" name="wantTime_s" class="form-control" placeholder="시작시간 입력" required>
+                                    <input type="text" id="wantTime_s" name="wantTime_s" class="form-control" placeholder="시작시간 입력" data-input required>
                                 </div>
                                 <div class="time-container-2">
-                                    <input type="text" id="wantTime_e" name="wantTime_e" class="form-control" placeholder="종료시간 입력" required>
+                                    <input type="text" id="wantTime_e" name="wantTime_e" class="form-control" placeholder="종료시간 입력" data-input required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
                                     ex) 영상의 1시간 지점부터 2시간 지점까지
@@ -174,6 +182,17 @@
 
     <!-- flatpicker (Timepicker) JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        // 버튼을 클릭할 때 이벤트 처리
+        document.getElementById('linkButton').addEventListener('click', function() {
+            // 이동할 페이지의 URL을 지정합니다.
+            var targetPageURL = '이동할_페이지의_URL_입력';
+
+            // 새 탭 또는 창에서 페이지를 엽니다.
+            window.open(targetPageURL, '_blank');
+        });
+    </script>
 
 </body>
 </html>
