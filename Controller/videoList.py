@@ -1,4 +1,7 @@
 import sys
+
+import requests
+
 #리눅스를 위한 경로추가
 sys.path.append('/home/hosting/WebApp')
 from flask import Blueprint, jsonify, request
@@ -8,8 +11,12 @@ from flask import redirect
 import pymysql as db
 from DAO import VideoDAO as video
 from DAO.DBConnection import dbInfo
+from flask_cors import CORS
 
 videoListController = Blueprint("videoListPage", __name__, url_prefix="/")
+# CORS 설정
+CORS(videoListController)
+
 
 @videoListController.route('/videoList')
 def videoList():
@@ -65,3 +72,5 @@ def DeleteVideo(cardId):
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
+
+

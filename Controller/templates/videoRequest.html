@@ -117,6 +117,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cameraName"><strong>카메라ID 및 위치</strong></label>
+                                <a href="cameraMap.html" class="btn btn-primary">맵 보기</a>
 {#                                <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="{{ cameraName }}" readonly required>#}
                                 &nbsp;
                                 <input id="cameraName" name="cameraName" type="text" class="form-control is-valid" value="esqure_01" readonly required> <!-- 로컬용  -->
@@ -181,6 +182,17 @@
 
     <!-- flatpicker (Timepicker) JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        // 버튼을 클릭할 때 이벤트 처리
+        document.getElementById('linkButton').addEventListener('click', function() {
+            // 이동할 페이지의 URL을 지정합니다.
+            var targetPageURL = '이동할_페이지의_URL_입력';
+
+            // 새 탭 또는 창에서 페이지를 엽니다.
+            window.open(targetPageURL, '_blank');
+        });
+    </script>
 
 </body>
 </html>
