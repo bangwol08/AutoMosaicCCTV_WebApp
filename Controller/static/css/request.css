@@ -54,3 +54,8 @@ strong {
 .flatpickr-time {
     top: auto !important;
 }
+
+
+#cameraMap {
+    background-color: transparent;
+}

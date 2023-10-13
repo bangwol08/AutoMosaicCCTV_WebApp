@@ -26,4 +26,4 @@ app.register_blueprint(Video.videoController)
 app.register_blueprint(Uplodad.upload)
 
 # 카메라맵 페이지
-app.register_blueprint(CameraMap.cameraMapPageController)
+app.register_blueprint(CameraMap.cameraMapController)
