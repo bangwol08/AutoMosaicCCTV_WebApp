@@ -11,11 +11,8 @@ from flask import redirect
 import pymysql as db
 from DAO import VideoDAO as video
 from DAO.DBConnection import dbInfo
-from flask_cors import CORS
 
 videoListController = Blueprint("videoListPage", __name__, url_prefix="/")
-# CORS 설정
-CORS(videoListController)
 
 
 @videoListController.route('/videoList')

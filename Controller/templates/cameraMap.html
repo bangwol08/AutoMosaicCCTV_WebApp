@@ -61,12 +61,14 @@
             <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fc08fff74aefb480cd5e4825d06fe58b"></script>
 
             <script>
-                {#var latitude = {{ latitude }};#}
-                {#var longitude = {{ longitude }};#}
+                var latit = {{ GetLocation['latitude'] }};
+                var longit = {{ GetLocation['longitude'] }};
+
 
                 var mapContainer = document.getElementById('map');// 지도를 표시할 div
                 mapOption = {
-                    center: new kakao.maps.LatLng({{ latitude }}, {{ longitude }}), // 지도의 중심좌표
+                    {#center: new kakao.maps.LatLng(37.4812845080678, 126.952713197762 ), // 지도의 중심좌표#}
+                    center: new kakao.maps.LatLng(latit, longit ),
                     level: 4, // 지도의 확대 레벨
                     mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
                 };
@@ -84,26 +86,20 @@
                 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
                 // 카메라 위치 데이터를 가져오고 지도에 마커 표시
-                fetch('/GetLocation')
-                    .then(response => response.json())
-                    .then(data => {
-                        data.GetLocation.forEach(camera => {
-                            var markerPosition = new kakao.maps.LatLng(camera.latitude, camera.longitude);
-                            var marker = new kakao.maps.Marker({
-                                position: markerPosition,
-                                map: map
-                            });
+                var markerPosition = new kakao.maps.LatLng(37.4812845080678, 126.952713197762);
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition,
+                    map: map
+                });
 
-                            // 마커 클릭 시 정보 창 표시 (예: 카메라 이름)
-                            var infowindow = new kakao.maps.InfoWindow({
-                                content: camera.name
-                            });
+                // 마커 클릭 시 정보 창 표시 (예: 카메라 이름)
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: reqest.get('cameraName')
+                });
 
-                            kakao.maps.event.addListener(marker, 'click', function() {
-                                infowindow.open(map, marker);
-                            });
-                        });
-                    });
+                kakao.maps.event.addEventListener(marker, 'click', function() {
+                    infowindow.open(map, marker);
+                });
 
                 </script>
         </div>
