@@ -1,6 +1,6 @@
 import pymysql as db
 from DAO.DBConnection import dbInfo
-def GetLocation(cameraID):
+def GetLocationMap(cameraID):
     try:
         connection = db.connect(
             host=dbInfo[0],
@@ -12,9 +12,9 @@ def GetLocation(cameraID):
         cursor = connection.cursor()
         sql = "SELECT latitude, longitude FROM camera WHERE camera_id=%s"
         cursor.execute(sql, (cameraID))
-        rows = cursor.fetchall()
+        data = cursor.fetchall()
         connection.close()
-        return rows
+        return data
 
     except Exception as e:
         connection.close()
