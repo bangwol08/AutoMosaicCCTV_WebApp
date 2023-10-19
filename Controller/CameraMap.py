@@ -22,27 +22,8 @@ def cameraMap():
     if 'id' not in session:
         cameraID = request.args.get('cameraID', default='', type=str)
         return redirect(url_for('loginPage.loginPage', prev='videoPage.videoRequestPage', cameraID=cameraID))
+
     try:
-        # if request.method == 'POST':
-        #     data = request.get_json()
-        #     latitude = data.get('latitude')
-        #     longitude = data.get('longitude')
-        #
-        #     # 위치 데이터를 세션에 저장
-        #     session['latitude'] = latitude
-        #     session['longitude'] = longitude
-        #
-        # if request.method == 'GET':
-        #     # GET 요청에서 세션에서 위치 데이터를 가져옴
-        #     latitude = session.get('latitude')
-        #     longitude = session.get('longitude')
-        #
-        #     # 이 부분을 사용자의 위치 데이터 가져오기로 대체하려면 수정이 필요합니다.
-        #     # location_data = {'latitude': 37.4812845080678, 'longitude': 126.952713197762}
-        #     location_data = {'latitude': latitude, 'longitude': longitude}
-        #
-        #     return render_template('cameraMap.html', latitude=location_data['latitude'],
-        #                            longitude=location_data['longitude'])
         cameraID = request.args.get('cameraID', default='', type=str)
           # 원하는 카메라 ID
         location_data = LocationDAO.GetLocationMap(cameraID)
