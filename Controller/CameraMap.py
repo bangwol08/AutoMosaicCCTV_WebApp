@@ -1,11 +1,10 @@
 import sys
 
-
-from DAO.LocationDAO import GetLocation
+from DAO import LocationDAO
 
 # 리눅스를 위한 경로추가
 sys.path.append('/home/hosting/WebApp')
-from flask import Blueprint, flash
+from flask import Blueprint, flash, jsonify, json, Response
 from flask import render_template
 from flask import session
 from flask import redirect
@@ -23,12 +22,37 @@ def cameraMap():
     if 'id' not in session:
         cameraID = request.args.get('cameraID', default='', type=str)
         return redirect(url_for('loginPage.loginPage', prev='videoPage.videoRequestPage', cameraID=cameraID))
-
     try:
-        # 데이터베이스에서 카메라의 위치 정보 가져오기
+        # if request.method == 'POST':
+        #     data = request.get_json()
+        #     latitude = data.get('latitude')
+        #     longitude = data.get('longitude')
+        #
+        #     # 위치 데이터를 세션에 저장
+        #     session['latitude'] = latitude
+        #     session['longitude'] = longitude
+        #
+        # if request.method == 'GET':
+        #     # GET 요청에서 세션에서 위치 데이터를 가져옴
+        #     latitude = session.get('latitude')
+        #     longitude = session.get('longitude')
+        #
+        #     # 이 부분을 사용자의 위치 데이터 가져오기로 대체하려면 수정이 필요합니다.
+        #     # location_data = {'latitude': 37.4812845080678, 'longitude': 126.952713197762}
+        #     location_data = {'latitude': latitude, 'longitude': longitude}
+        #
+        #     return render_template('cameraMap.html', latitude=location_data['latitude'],
+        #                            longitude=location_data['longitude'])
+        cameraID = request.args.get('cameraID', default='', type=str)
+          # 원하는 카메라 ID
+        location_data = LocationDAO.GetLocationMap(cameraID)
+        # location_data 리스트를 파이썬 딕셔너리로 변환
+        location_dict = [{'latitude': item[0], 'longitude': item[1]} for item in location_data]
+        # 데이터를 JSON 형식으로 직렬화
+        data_json = json.dumps(location_dict)
 
-        # return render_template('cameraMap.html', latitude=latitude, longitude=longitude)
-        return render_template('cameraMap.html', location=GetLocation())
+        return render_template('cameraMap.html', data=data_json)
+
 
     except Exception as e:
         # 에러 핸들링 (예: 로깅, 에러 메시지 보여주기 등)
