@@ -18,28 +18,3 @@
         console.log("Geolocation is not available.");
       }
     }
-
-    function getMapLocation(latitude, longitude) {
-
-          const data = { latitude, longitude };
-
-          // Ajax 요청으로 위치 정보를 Flask 서버에 전송
-          fetch('/cameraMap', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-          })
-          .then(response => response.json())
-          .then(data => {
-              // 서버에서 처리한 결과를 사용
-              console.log(data);
-          })
-          .catch(error => {
-              console.error("Error sending location to server:", error);
-          });
-
-    }
-
-
