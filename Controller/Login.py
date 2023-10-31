@@ -16,9 +16,6 @@ loginController = Blueprint("loginPage", __name__, url_prefix="/")
 # 로그인 페이지
 @loginController.route('/login', methods=['GET', 'POST'])
 def loginPage():
-    if 'id' in session:
-        return redirect('/')
-
     if request.method == 'POST':
         try:
             #로그인 요청 후

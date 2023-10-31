@@ -31,7 +31,7 @@ def videoRequestPage():
     # 세션관리(세션이 없을때(로그인이 되어있지 않을때) index로 돌아감)
     if 'id' not in session:
         cameraID = request.args.get('cameraID', default='', type=str)
-        return redirect(url_for('loginPage.loginPage', prev='videoPage.videoRequestPage', cameraID=cameraID))
+        return redirect(url_for('loginPage.loginPage', prev='videoRequest', cameraID=cameraID))
 
     # 실제 페이지구현
     if request.method == 'POST':
