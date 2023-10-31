@@ -1,5 +1,5 @@
 from flask import Flask
-from . import Login, Video, CameraMap
+from . import Login, Video
 from . import Index
 from . import videoList
 from . import signUp
@@ -24,6 +24,3 @@ app.register_blueprint(Video.videoController)
 
 # 프레임업로드
 app.register_blueprint(Uplodad.upload)
-
-# 카메라맵 페이지
-app.register_blueprint(CameraMap.cameraMapController)

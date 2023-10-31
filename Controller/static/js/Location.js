@@ -7,7 +7,6 @@
           const locationInput = document.getElementById("location");
           const locationBtn = document.getElementById("getLocationBtn")
           locationInput.value = `${latitude},${longitude}`;
-          console.log(locationInput.value);
           locationBtn.innerText = '위치정보수집완료';
           locationBtn.classList.add('btn-success'); // 클릭하면 버튼 초록색으로
 

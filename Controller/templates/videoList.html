@@ -23,8 +23,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 
     <!-- VIDEO CDN-->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+{#    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />#}
+{#    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>#}
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel ="stylesheet" href ="{{ url_for('static', filename='css/styles.css') }}"/>
@@ -41,7 +41,7 @@
 
     <!-- 사용자 JS -->
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Location.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
     <script src="{{ url_for('static', filename='js/List.js') }}"></script>
 
 
@@ -70,7 +70,7 @@
             <!-- Video List -->
             <div id="mainclass" class="mainclass">
                 {% for item in list %}
-                    <div class="video-card" id="card {{ loop.index }}">
+                    <div class="video-card" id="{{ loop.index }}">
                         {% if item[8] == "complete" %}
                             <div class="video-container">
                                 <video id="players{{ loop.index }}" style="position: static;" controls width="500">
@@ -82,13 +82,12 @@
                                 <div class="card">
                                    <div class="card-header">
                                        <h5 class="card-title">영상정보</h5>
-                                       <a href='/cameraMapL' id="cameraMap" class="btn btn-primary" onclick="getMapLocation()">&#128269;</a>
                                    </div>
                                    <ul class="list-group list-group-flush">
                                        <li class="list-group-item">
                                             <p><strong>신청자:</strong> {{ item[1] }}</p>
-                                            <p><strong>카메라ID:</strong> {{ item[2] }}</p>
-                                            <p><strong>신청 날짜:</strong> {{ item[3] }}</p>
+                                            <p><strong>카메라ID:</strong> {{ item[2] }}
+                                            </p><p><strong>신청 날짜:</strong> {{ item[3] }}</p>
                                         </li>
                                    </ul>
                                 </div>
